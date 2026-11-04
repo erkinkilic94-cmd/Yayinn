@@ -30,7 +30,7 @@ input[type=text],input[type=tel]{font:inherit;color:var(--t);background:#0d0618;
 .tp{display:none}.tp.on{display:block}
 input[type=range]{width:100%;accent-color:var(--a);height:36px}
 .th{display:flex;gap:10px;margin:8px 0}.th button{height:48px;border-radius:99px}
-#toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:99;text-align:center}
+#toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:99;text-align:center;font-size:14px}
 /* yayın sahnesi */
 #stage{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center}
 #stage.on{display:flex}
@@ -38,27 +38,28 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 #v{width:100%;height:100%;object-fit:cover}
 #fr:after{content:"";position:absolute;inset:0;background:linear-gradient(#0009,transparent 22%,transparent 62%,#000b);pointer-events:none}
 @keyframes drop{from{transform:translateY(-60px);opacity:0}}
-@keyframes dropIn{from{transform:translateY(-80px) scale(.7);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
 @keyframes pop{from{transform:translateY(60px) scale(.85);opacity:0}}
 @keyframes glow{50%{box-shadow:0 0 44px var(--a)}}
+/* YAYIN MESAJI - ÜSTTE */
 #msg{position:absolute;z-index:3;left:5%;right:5%;top:6%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:drop .55s,glow 2.5s infinite}
 #msg .u{color:var(--a);font-weight:800;font-size:18px;margin-bottom:4px}
 #msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
 #msg.w .x{font-size:32px;text-align:center}
 #rq{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
-#ded{position:absolute;z-index:5;left:5%;right:5%;top:6%;display:none;padding:22px 20px 20px;border-radius:26px;background:linear-gradient(135deg,#7c3aed,#d946ef,#ff2d95,#7c3aed);background-size:300% 300%;border:2px solid rgba(255,255,255,.5);box-shadow:0 0 40px #d946efaa,0 0 90px #a855f766;animation:dropIn .7s,dedBg 4s infinite,dedGlow 1.6s infinite alternate;text-align:center;color:#fff;overflow:hidden}
+/* DEDİKASYON KARTI - ALTTA, ZARİF, YARI SAYDAM, 2:50 */
+#ded{position:absolute;z-index:5;left:8%;right:8%;bottom:9%;display:none;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,rgba(124,58,237,.88),rgba(217,70,239,.88),rgba(255,45,149,.88));background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.4);box-shadow:0 6px 30px rgba(217,70,239,.55);animation:dedIn .6s cubic-bezier(.34,1.56,.64,1),dedBg 6s ease infinite;text-align:center;color:#fff;overflow:hidden}
+@keyframes dedIn{from{transform:translateY(30px) scale(.85);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
 @keyframes dedBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes dedGlow{from{box-shadow:0 0 30px #d946efaa,0 0 70px #a855f766}to{box-shadow:0 0 60px #ff2d95cc,0 0 130px #d946ef88}}
-#ded .hd{position:relative;z-index:2;font-size:12px;letter-spacing:5px;font-weight:800;opacity:.95;margin-bottom:14px;text-shadow:0 2px 4px #0006}
-#ded .people{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:nowrap}
-#ded .name{font-size:22px;font-weight:800;text-shadow:0 2px 8px #0008;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ded .hd{position:relative;z-index:2;font-size:10px;letter-spacing:4px;font-weight:800;opacity:.92;margin-bottom:8px;text-shadow:0 1px 3px #0006}
+#ded .people{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:nowrap}
+#ded .name{font-size:17px;font-weight:800;text-shadow:0 2px 6px #0006;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #ded .from{color:#fff}#ded .to{color:#fff}
-#ded .heart{font-size:28px;animation:heartBeat 1.1s infinite;filter:drop-shadow(0 0 8px #fff)}
-@keyframes heartBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.35)}30%{transform:scale(1)}45%{transform:scale(1.2)}}
-#ded .song{position:relative;z-index:2;margin-top:14px;padding:9px 16px;background:#0007;border-radius:99px;display:inline-block;font-size:14px;font-weight:600;border:1px solid #fff3;max-width:92%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ded .heart{font-size:20px;animation:heartBeat 1.2s infinite;filter:drop-shadow(0 0 6px #fff8)}
+@keyframes heartBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.28)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+#ded .song{position:relative;z-index:2;margin-top:9px;padding:6px 14px;background:rgba(0,0,0,.35);border-radius:99px;display:inline-block;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.2);max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #ded .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-#ded .hearts span{position:absolute;bottom:-30px;font-size:22px;opacity:0;animation:floatHeart 3.2s infinite ease-out;filter:drop-shadow(0 0 6px #fff6)}
-@keyframes floatHeart{0%{opacity:0;transform:translateY(0) rotate(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(360deg) scale(1.1)}}
+#ded .hearts span{position:absolute;bottom:-20px;font-size:15px;opacity:0;animation:floatHeart 4s infinite ease-out;filter:drop-shadow(0 0 4px #fff5)}
+@keyframes floatHeart{0%{opacity:0;transform:translateY(0) rotate(0) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(-180px) rotate(280deg) scale(1)}}
 #bk{position:fixed;top:0;left:0;width:64px;height:64px;z-index:20}
 /* spotify */
 #spNow{padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#1DB954,#191414);font-weight:700;font-size:13px;margin:10px 0;word-break:break-word;display:none}
@@ -132,7 +133,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div class="row"><button class="p" id="ra">İstek ekle</button></div><div id="rl"></div>
   </div>
   <div class="tp" id="t5">
-   <p class="s">💌 Dedikasyon kartı — Android yayın ekranında animasyonlu olarak belirir.</p>
+   <p class="s">💌 Dedikasyon kartı — Android yayın ekranında 2:50 süreyle altta, zarif şekilde kalır.</p>
    <input type="text" id="df" placeholder="Kimden (@kullanıcı)" style="margin:8px 0">
    <input type="text" id="dt" placeholder="Kime (@kullanıcı)" style="margin:8px 0">
    <input type="text" id="ds" placeholder="Şarkı adı (isteğe bağlı)">
@@ -142,7 +143,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div id="spLogin">
     <p class="s">Spotify Premium hesabını bağla. Android'de Spotify uygulamasını açık tut.</p>
     <div class="row"><button class="p" id="spConnect" style="background:linear-gradient(135deg,#1DB954,#158f41)">🎧 Spotify'a Bağlan</button></div>
-    <p class="s" style="font-size:12px;margin-top:14px">⚠️ Önce Spotify Dashboard'da uygulamanıza aşağıdaki Redirect URI'yi ekleyin (Edit Settings → Redirect URIs → Add → Save):</p>
+    <p class="s" style="font-size:12px;margin-top:14px">⚠️ Spotify Dashboard'da uygulamanıza aşağıdaki Redirect URI'yi ekleyin:</p>
     <div class="li" style="font-size:11px"><span id="spRedirect" style="word-break:break-all;white-space:normal"></span><button id="spCopy" style="flex:none">Kopyala</button></div>
    </div>
    <div id="spPanel" style="display:none">
@@ -177,7 +178,7 @@ const E=t=>{const d=document.createElement('div');d.textContent=t==null?'':t;ret
 const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},d:k=>{try{localStorage.removeItem(k)}catch(e){}}};
 const PO=()=>({config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'},...ICE]}});
 const show=id=>{document.querySelectorAll('.scr,#stage').forEach(e=>e.classList.remove('on'));$('#'+id).classList.add('on')};
-let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',2800)};
+let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',3200)};
 const TH=['#a855f7','#22d3ee','#ff2d95'];
 let peer,conn;
 
@@ -249,14 +250,15 @@ A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){push()}el
 A.onplay=A.onpause=()=>push();
 function setTheme(i){th=i;document.documentElement.style.setProperty('--a',TH[i]||TH[0])}
 
+/* YAYIN MESAJI — üstte, dedikasyona dokunmaz */
 function showMsg(d){
- $('#ded').style.display='none';
  const m=$('#msg');m.className=d.k==='w'?'w':'';
  m.innerHTML=d.k==='w'?'<div class="u">👋 Hoş geldin</div><div class="x">@'+E(d.u)+'</div>':'<div class="u">@'+E(d.u)+'</div><div class="x">'+E(d.x)+'</div>';
  m.style.display='block';m.style.animation='none';void m.offsetWidth;m.style.animation='';
  clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
 }
 
+/* DEDİKASYON — 2:50 (170 sn), altta, zarif, mesajı gizlemez */
 function showDed(d){
  const el=$('#ded');
  const from=E(d.f||'?');
@@ -271,16 +273,13 @@ function showDed(d){
   </div>
   ${song}
   <div class="hearts">
-   <span style="left:8%;animation-delay:0s">💜</span>
-   <span style="left:24%;animation-delay:.6s">💖</span>
-   <span style="left:44%;animation-delay:1.2s">✨</span>
-   <span style="left:64%;animation-delay:.3s">💜</span>
-   <span style="left:84%;animation-delay:.9s">💖</span>
+   <span style="left:12%;animation-delay:0s">💜</span>
+   <span style="left:42%;animation-delay:1.3s">💖</span>
+   <span style="left:72%;animation-delay:.7s">✨</span>
   </div>`;
- $('#msg').style.display='none';
  el.style.display='block';
  el.style.animation='none';void el.offsetWidth;el.style.animation='';
- clearTimeout(dedT);dedT=setTimeout(()=>el.style.display='none',14000);
+ clearTimeout(dedT);dedT=setTimeout(()=>el.style.display='none',170000);
  if(d.s){
   const q=nz(d.s);
   const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
@@ -445,8 +444,13 @@ async function spApi(path,opts={}){
  const r=await fetch(SP_API+path,{...opts,headers:{'Authorization':'Bearer '+at,...(opts.headers||{})}});
  if(r.status===204)return{ok:true};
  if(r.status===401){if(await spRefresh())return spApi(path,opts);spLogout();return null}
- if(!r.ok){const err=await r.json().catch(()=>({}));console.error('Spotify',r.status,err);return{error:err}}
- return r.json();
+ if(!r.ok){
+  const err=await r.json().catch(()=>({}));
+  console.error('Spotify',r.status,err);
+  return {error:err, status:r.status};
+ }
+ const txt=await r.text();
+ return txt?JSON.parse(txt):{ok:true};
 }
 function spLogout(){['sp_at','sp_rt','sp_exp','sp_verifier','sp_state'].forEach(k=>localStorage.removeItem(k));spSelectedDevice=null}
 function spIsAuth(){return !!localStorage.getItem('sp_at')&&!!localStorage.getItem('sp_rt')}
@@ -459,10 +463,57 @@ async function spLoadDevices(){
   el.innerHTML='<p class="s">Cihaz bulunamadı. Android\'de Spotify uygulamasını aç ve bir şarkı çal, sonra burada yenile.</p>';
   return;
  }
+ // Otomatik seç (aktif cihaz veya ilk cihaz)
+ if(!spSelectedDevice){
+  const act=d.devices.find(x=>x.is_active)||d.devices[0];
+  spSelectedDevice=act.id;
+ }
  el.innerHTML=d.devices.map(x=>'<div class="li '+(x.id===spSelectedDevice?'cur':'')+'" data-spdev="'+E(x.id)+'"><span>'+E(x.name)+(x.is_active?' 🟢':'')+'</span><small>'+E(x.type)+'</small></div>').join('');
  el.querySelectorAll('[data-spdev]').forEach(y=>{
   y.onclick=()=>{spSelectedDevice=y.dataset.spdev;spLoadDevices();};
  });
+}
+
+/* Cihaz seçili değilse otomatik bul */
+async function spEnsureDevice(){
+ if(spSelectedDevice)return true;
+ const d=await spApi('/me/player/devices');
+ if(d&&d.devices&&d.devices.length){
+  const act=d.devices.find(x=>x.is_active)||d.devices[0];
+  spSelectedDevice=act.id;
+  spLoadDevices();
+  return true;
+ }
+ return false;
+}
+
+/* Asıl çalma fonksiyonu — cihazı bul, transfer et, çal */
+async function spPlayUri(uri){
+ toast('Hazırlanıyor…');
+ if(!await spEnsureDevice()){
+  toast('Aktif Spotify cihazı yok. Android\'de Spotify\'ı açıp bir şarkı başlatıp duraklat, sonra tekrar dene.');
+  return;
+ }
+ // Cihaza transfer et
+ await spApi('/me/player',{
+  method:'PUT',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({device_ids:[spSelectedDevice],play:false})
+ });
+ // Şarkıyı çal
+ const r=await spApi('/me/player/play?device_id='+encodeURIComponent(spSelectedDevice),{
+  method:'PUT',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({uris:[uri]})
+ });
+ if(r&&r.error){
+  const msg=r.error?.error?.message||r.error?.message||JSON.stringify(r.error);
+  toast('Spotify: '+msg);
+  console.error('Spotify play error:',r);
+  return;
+ }
+ toast('▶ Çalınıyor');
+ setTimeout(spUpdateNow,900);
 }
 
 async function spSearchTracks(){
@@ -470,23 +521,16 @@ async function spSearchTracks(){
  if(!q){toast('Şarkı adı yaz');return}
  $('#spResults').innerHTML='<p class="s">Aranıyor…</p>';
  const d=await spApi('/search?q='+encodeURIComponent(q)+'&type=track&limit=10');
+ if(d&&d.error){
+  $('#spResults').innerHTML='<p class="s">Arama hatası</p>';
+  toast('Spotify arama hatası');
+  return;
+ }
  const items=d&&d.tracks&&d.tracks.items||[];
  if(!items.length){$('#spResults').innerHTML='<p class="s">Sonuç yok</p>';return}
  $('#spResults').innerHTML=items.map(t=>'<div class="li"><span>'+E(t.name)+'<br><small>'+E(t.artists.map(a=>a.name).join(', '))+'</small></span><button class="p" data-spuri="'+E(t.uri)+'" style="background:linear-gradient(135deg,#1DB954,#158f41)">▶</button></div>').join('');
  $('#spResults').querySelectorAll('[data-spuri]').forEach(b=>{
-  b.onclick=async()=>{
-   const uri=b.dataset.spuri;
-   toast('Çalınıyor...');
-   const url='/me/player/play'+(spSelectedDevice?'?device_id='+spSelectedDevice:'');
-   const r=await spApi(url,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({uris:[uri]})});
-   if(r&&r.error){
-    const msg=r.error.error&&r.error.error.message||'';
-    if(msg.includes('No active device')||msg.includes('Premium'))toast('Cihaz bulunamadı. Android\'de Spotify\'ı aç.');
-    else toast('Hata: '+msg);
-   } else {
-    setTimeout(spUpdateNow,700);
-   }
-  };
+  b.onclick=()=>spPlayUri(b.dataset.spuri);
  });
 }
 
@@ -512,14 +556,14 @@ $('#spPlayBtn').onclick=async()=>{
  const c=await spApi('/me/player/currently-playing');
  if(c&&c.is_playing)await spApi('/me/player/pause',{method:'PUT'});
  else await spApi('/me/player/play',{method:'PUT'});
- setTimeout(spUpdateNow,500);
+ setTimeout(spUpdateNow,600);
 };
 $('#spNextBtn').onclick=()=>spApi('/me/player/next',{method:'POST'});
 $('#spPrevBtn').onclick=()=>spApi('/me/player/previous',{method:'POST'});
 $('#spVol').oninput=e=>spApi('/me/player/volume?volume_percent='+e.target.value,{method:'PUT'});
 
 function spRefreshUI(){
- if(spIsAuth()){$('#spLogin').style.display='none';$('#spPanel').style.display='block';spUpdateNow();}
+ if(spIsAuth()){$('#spLogin').style.display='none';$('#spPanel').style.display='block';spUpdateNow();spLoadDevices();}
  else{$('#spLogin').style.display='block';$('#spPanel').style.display='none';}
 }
 spRefreshUI();
@@ -538,5 +582,5 @@ spRefreshUI();
  }
 })();
 
-setInterval(()=>{if(spIsAuth()&&$('#t6').classList.contains('on'))spUpdateNow();},4000);
+setInterval(()=>{if(spIsAuth()&&$('#t6').classList.contains('on'))spUpdateNow();},5000);
 </script></body></html>
