@@ -46,28 +46,30 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 @keyframes drop{from{transform:translateY(-50px);opacity:0}}
 @keyframes pop{from{transform:translateY(40px) scale(.85);opacity:0}}
 @keyframes glow{50%{box-shadow:0 0 44px var(--a)}}
-@keyframes eq{0%,100%{height:5px}50%{height:24px}}
 @keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
 @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.3)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
-@keyframes fl{0%{opacity:0;transform:translateY(0) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(-170px) rotate(260deg) scale(1)}}
-#np{position:absolute;z-index:3;top:3%;left:5%;right:5%;display:none;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:#0a0314cc;border:1px solid var(--a);box-shadow:0 0 22px var(--a);animation:drop .6s}
-#np b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#np small{color:var(--m)}#np div{min-width:0}
-.eq{display:flex;gap:3px;align-items:flex-end;height:24px}.eq i{width:5px;background:var(--a);border-radius:2px;animation:eq 1s infinite}.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
-#msg{position:absolute;z-index:3;left:5%;right:5%;top:14%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:drop .55s,glow 2.5s infinite}
+@keyframes fl{0%{opacity:0;transform:translateY(0) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(-150px) rotate(260deg) scale(1)}}
+#msg{position:absolute;z-index:3;left:5%;right:5%;bottom:12%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:pop .55s,glow 2.5s infinite}
 #msg .u{color:var(--a);font-weight:800;font-size:18px;margin-bottom:4px}
 #msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
 #msg.w .x{font-size:32px;text-align:center}
-#rq{position:absolute;z-index:3;left:5%;right:5%;bottom:30%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
-#cd{position:absolute;z-index:5;left:8%;right:8%;bottom:9%;display:none;padding:16px 18px;border-radius:22px;background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid #fff6;text-align:center;color:#fff;overflow:hidden;animation:pop .6s,bg 6s infinite}
-#cd.d{background-image:linear-gradient(135deg,#7c3aedd8,#d946efd8,#ff2d95d8);box-shadow:0 6px 30px #d946ef88}
-#cd.f{background-image:linear-gradient(135deg,#22d3eed8,#3b82f6d8,#6366f1d8);box-shadow:0 6px 30px #3b82f699}
-#cd .hd{position:relative;z-index:2;font-size:11px;letter-spacing:4px;font-weight:800;margin-bottom:8px}
-#cd .pp{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:8px}
-#cd .nm{font-size:17px;font-weight:800;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 2px 6px #0006}
-#cd .ic{font-size:22px;font-style:normal;animation:beat 1.2s infinite}
-#cd .sg{position:relative;z-index:2;margin-top:9px;padding:6px 14px;background:#0006;border-radius:99px;display:inline-block;font-size:12px;font-weight:600;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#cd .fl{position:absolute;inset:0;pointer-events:none;z-index:1}
-#cd .fl span{position:absolute;bottom:-20px;font-size:15px;opacity:0;animation:fl 4s infinite ease-out}
+#rq{position:absolute;z-index:3;left:5%;right:5%;bottom:32%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
+/* üst kartlar */
+#cards{position:absolute;z-index:5;top:3%;left:5%;right:5%;display:flex;flex-direction:column;gap:10px}
+.cd{display:none;position:relative;padding:14px 16px;border-radius:22px;background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid #fff6;text-align:center;color:#fff;overflow:hidden;animation:drop .6s,bg 6s infinite}
+.cd.d{background-image:linear-gradient(135deg,#7c3aedd8,#d946efd8,#ff2d95d8);box-shadow:0 6px 30px #d946ef88}
+.cd.f{background-image:linear-gradient(135deg,#22d3eed8,#3b82f6d8,#6366f1d8);box-shadow:0 6px 30px #3b82f699}
+.cd .hd{position:relative;z-index:2;font-size:11px;letter-spacing:4px;font-weight:800;margin-bottom:8px}
+.cd .pp{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:8px}
+.cd .nm{font-size:17px;font-weight:800;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 2px 6px #0006}
+.cd .ic{font-size:22px;font-style:normal;animation:beat 1.2s infinite}
+.cd .sg{position:relative;z-index:2;margin-top:9px;padding:6px 14px;background:#0006;border-radius:99px;display:inline-block;font-size:12px;font-weight:600;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cd .fl{position:absolute;inset:0;pointer-events:none;z-index:1}
+.cd .fl span{position:absolute;bottom:-20px;font-size:15px;opacity:0;animation:fl 4s infinite ease-out}
+/* sağ köşe menüsü */
+#menu{position:absolute;z-index:4;right:3%;top:44%;width:46%;display:none;flex-direction:column;gap:6px}
+#menu .mh{font-size:10px;letter-spacing:3px;color:var(--a);font-weight:800;text-align:right;text-shadow:0 0 8px #000}
+#menu .mi{padding:7px 10px;border-radius:12px;background:#0a0314cc;border:1px solid var(--a);box-shadow:0 0 10px #a855f755;font-size:12px;font-weight:700;line-height:1.25;animation:pop .5s}
 #bk{position:fixed;top:0;left:0;width:64px;height:64px;z-index:20}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
@@ -93,8 +95,9 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 
 <div id="stage"><div id="fr">
  <video id="v" muted playsinline webkit-playsinline></video>
- <div id="np"><div class="eq"><i></i><i></i><i></i></div><div><b id="npt"></b><small id="npa"></small></div></div>
- <div id="msg"></div><div id="rq"></div><div id="cd"></div>
+ <div id="cards"><div id="cdd" class="cd d"></div><div id="cdf" class="cd f"></div></div>
+ <div id="menu"></div>
+ <div id="msg"></div><div id="rq"></div>
 </div><div id="bk"></div></div>
 <audio id="au"></audio>
 
@@ -107,7 +110,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
  <div id="ctl" style="display:none">
   <div id="rs" class="pill">Bağlanıyor…</div>
   <div class="tabs">
-   <button data-tab="t1" class="on">📹 Video</button><button data-tab="t2">🎵 Müzik</button><button data-tab="t3">💬 Yayın</button><button data-tab="t4">📋 İstek</button><button data-tab="t5">💌 Dedikasyon</button><button data-tab="t7">🤝 Dostluk</button><button data-tab="t6">🎧 Spotify</button>
+   <button data-tab="t1" class="on">📹 Video</button><button data-tab="t2">🎵 Müzik</button><button data-tab="t3">💬 Yayın</button><button data-tab="t4">📋 İstek</button><button data-tab="t5">💌 Dedikasyon</button><button data-tab="t7">🤝 Dostluk</button><button data-tab="t8">📌 Menü</button><button data-tab="t6">🎧 Spotify</button>
   </div>
   <div class="tp on" id="t1">
    <div class="row"><button data-c="vp">⏮</button><button data-c="vt" id="vpl" class="p">▶</button><button data-c="vn">⏭</button></div>
@@ -131,17 +134,22 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div class="row"><button class="p" id="ra">İstek ekle</button></div><div id="rl"></div>
   </div>
   <div class="tp" id="t5">
-   <p class="s">💌 Kapatana kadar ekranda kalır.</p>
+   <p class="s">💌 Ekranın üstünde, kapatana kadar kalır.</p>
    <input type="text" id="df" placeholder="Kimden (@kullanıcı)" style="margin:8px 0"><input type="text" id="dt" placeholder="Kime (@kullanıcı)" style="margin-bottom:8px"><input type="text" id="ds" placeholder="Şarkı adı (isteğe bağlı)">
    <div class="row"><button class="p" id="dsend">💌 Gönder</button></div>
-   <div class="row"><button class="red" data-c="cc">❌ Kapat</button></div>
+   <div class="row"><button class="red" data-c="ccd">❌ Dedikasyonu kapat</button></div>
   </div>
   <div class="tp" id="t7">
-   <p class="s">🤝 Kapatana kadar ekranda kalır.</p>
+   <p class="s">🤝 Ekranın üstünde, kapatana kadar kalır.</p>
    <input type="text" id="ff" placeholder="Kimden (@kullanıcı)" style="margin:8px 0"><input type="text" id="ft" placeholder="Kime (@kullanıcı)">
    <div class="row"><button class="b" id="fsend">🤝 Gönder</button></div>
-   <div class="row"><button class="red" data-c="cc">❌ Kapat</button></div>
+   <div class="row"><button class="red" data-c="ccf">❌ Dostluk kartını kapat</button></div>
    <div class="row"><button data-c="all">🔁 Ekrandaki her şeyi temizle</button></div>
+  </div>
+  <div class="tp" id="t8">
+   <p class="s">📌 Yayın ekranının sağ köşesinde duran menü. Satırları istediğin gibi yaz.</p>
+   <input type="text" id="m1" placeholder="1. satır" style="margin:6px 0"><input type="text" id="m2" placeholder="2. satır" style="margin:6px 0"><input type="text" id="m3" placeholder="3. satır" style="margin:6px 0">
+   <div class="row"><button class="p" id="mnSave">Güncelle</button><button id="mnTog">Göster / Gizle</button></div>
   </div>
   <div class="tp" id="t6">
    <div id="spLogin">
@@ -170,7 +178,9 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
 <script>
 const ICE=[];
+const MARKET='TR'; // Spotify hesabının ülkesi farklıysa değiştir (ör. DE)
 const CID='a787f75da65f44df80aea1c8bfa4bbc3',RURI='https://erkinkilic94-cmd.github.io/Yayinn/',SC='user-read-playback-state user-modify-playback-state user-read-currently-playing';
+const DEF_MENU={on:true,items:['🌹 Gül · Destek','🍵 Çay · Şarkı isteği','🫰 Finger Heart · Arkadaşının adını yaz']};
 const $=s=>document.querySelector(s);
 const E=t=>{const d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML};
 const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},d:k=>{try{localStorage.removeItem(k)}catch(e){}}};
@@ -180,16 +190,23 @@ let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='bloc
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const TH=['#a855f7','#22d3ee','#ff2d95'];
 const rc=()=>String(100000+Math.floor(Math.random()*900000));
-let peer,conn;
+let peer,conn,role='';
 
 $('#bH').onclick=hostInit;
 $('#bR').onclick=()=>{show('rem');$('#ci').value=''};
 
 /* ============ ANDROID: YAYIN EKRANI ============ */
 const V=$('#v'),A=$('#au');
-let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT,spT=null;
+let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT;
+let MN=DEF_MENU;try{MN=JSON.parse(ls.g('tlcMenu'))||DEF_MENU}catch(e){}
 V.muted=true;V.defaultMuted=true;V.volume=0;
 const hs=m=>$('#hs').textContent=m;
+
+function renderMenu(){
+ const m=$('#menu');m.style.display=MN.on?'flex':'none';
+ m.innerHTML='<div class="mh">🎁 MENÜ</div>'+(MN.items||[]).filter(Boolean).map(x=>'<div class="mi">'+E(x)+'</div>').join('');
+}
+renderMenu();
 
 function startHost(code){
  $('#code').textContent=code;
@@ -208,7 +225,7 @@ function startHost(code){
   else if(['network','server-error','socket-error','socket-closed'].includes(e.type))hs('Sunucuya ulaşılamıyor, tekrar denenecek…');
  });
 }
-function hostInit(){show('host');const c=ls.g('tlcCode')||rc();ls.s('tlcCode',c);startHost(c)}
+function hostInit(){role='h';show('host');const c=ls.g('tlcCode')||rc();ls.s('tlcCode',c);startHost(c)}
 $('#newCode').onclick=()=>{if(!confirm('Yeni oda kodu oluşturulsun mu? Bağlı kumanda kopacak.'))return;const n=rc();ls.s('tlcCode',n);startHost(n)};
 
 $('#aV').onclick=()=>$('#fV').click();$('#aM').onclick=()=>$('#fM').click();
@@ -221,12 +238,11 @@ $('#bk').addEventListener('click',()=>{const n=Date.now();if(n-lastTap<450){try{
 
 function lv(i,p=true){if(!vids.length)return;vi=(i+vids.length)%vids.length;V.src=vids[vi].u;V.muted=true;V.loop=!auto;if(p)V.play().catch(()=>{});push()}
 V.onended=()=>{if(auto)lv(vi+1)};V.onplay=V.onpause=()=>push();
-function lt(i,p=true){if(!mus.length)return;mi=(i+mus.length)%mus.length;A.src=mus[mi].u;if(p)A.play().catch(()=>toast('Müzik başlatılamadı'));np();push()}
+function lt(i,p=true){if(!mus.length)return;mi=(i+mus.length)%mus.length;A.src=mus[mi].u;if(p)A.play().catch(()=>toast('Müzik başlatılamadı'));push()}
 const rnd=()=>{let r;do r=Math.floor(Math.random()*mus.length);while(r===mi);return r};
 const mn=()=>{if(mus.length)lt(sh&&mus.length>1?rnd():mi+1)};
-A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){np();push()}else mn()};
-A.onplay=()=>{spT=null;np();push()};A.onpause=()=>{np();push()};
-function np(){const t=mus[mi],x=spT||(t&&!A.paused?{t:t.t,a:t.a}:null);$('#np').style.display=x?'flex':'none';if(x){$('#npt').textContent=x.t;$('#npa').textContent=x.a||'♪'}}
+A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){push()}else mn()};
+A.onplay=A.onpause=()=>push();
 function setTheme(i){th=i;document.documentElement.style.setProperty('--a',TH[i]||TH[0])}
 function showMsg(d){
  const m=$('#msg');m.className=d.k==='w'?'w':'';
@@ -235,7 +251,7 @@ function showMsg(d){
  clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
 }
 function showCard(d){
- const el=$('#cd'),f=d.k==='f';el.className=f?'f':'d';
+ const f=d.k==='f',el=$(f?'#cdf':'#cdd');
  el.innerHTML='<div class="hd">'+(f?'🤝 DOSTLUK':'💌 DEDİKASYON')+'</div><div class="pp"><span class="nm">'+E(d.f)+'</span><i class="ic">'+(f?'🤝':'❤️')+'</i><span class="nm">'+E(d.t)+'</span></div>'+(d.s?'<div class="sg">🎵 '+E(d.s)+'</div>':'')+'<div class="fl">'+[0,1,2,3,4,5].map(i=>'<span style="left:'+(8+i*16)+'%;animation-delay:'+i*.6+'s">'+(f?'✨':'💜')+'</span>').join('')+'</div>';
  el.style.display='block';el.style.animation='none';void el.offsetWidth;el.style.animation='';
 }
@@ -261,21 +277,20 @@ function cmd(d){
   case'msg':showMsg(d);break;
   case'clr':$('#msg').style.display='none';$('#rq').style.display='none';break;
   case'card':showCard(d);break;
-  case'cc':$('#cd').style.display='none';break;
-  case'all':['#msg','#rq','#cd'].forEach(s=>$(s).style.display='none');break;
-  case'np':spT=d.t?{t:d.t,a:d.a}:null;np();break;
+  case'ccd':$('#cdd').style.display='none';break;
+  case'ccf':$('#cdf').style.display='none';break;
+  case'all':['#msg','#rq','#cdd','#cdf'].forEach(s=>$(s).style.display='none');break;
+  case'menu':MN={on:!!d.on,items:(d.items||[]).slice(0,3)};ls.s('tlcMenu',JSON.stringify(MN));renderMenu();push();break;
   case'acc':accept(d);break;
   case'th':setTheme(d.i);push();break;
  }
 }
 function send(o){if(conn&&conn.open)conn.send(o)}
-function push(){send({t:'s',v:vids.map(x=>x.n),vi,vp:!V.paused,au:auto,m:mus.map(x=>[x.t,x.a]),mi,mp:!A.paused,vol:A.volume,sh,rep,th})}
+function push(){send({t:'s',v:vids.map(x=>x.n),vi,vp:!V.paused,au:auto,m:mus.map(x=>[x.t,x.a]),mi,mp:!A.paused,vol:A.volume,sh,rep,th,mn:MN})}
 
 /* ============ iPHONE: KUMANDA ============ */
-let S={v:[],m:[]},reqs=[],code,rid=0,rt;
-function openRem(code0){
- show('rem');code=code0;$('#join').style.display='none';$('#ctl').style.display='block';rconnect();
-}
+let S={v:[],m:[]},reqs=[],code,rid=0,rt,menuInit=false;
+function openRem(c0){role='r';show('rem');code=c0;$('#join').style.display='none';$('#ctl').style.display='block';rconnect()}
 $('#cb').onclick=()=>{const c=$('#ci').value.trim();if(c.length!==6){toast('6 haneli kodu yaz');return}ls.s('tlcLast',c);openRem(c)};
 const rs=(m,ok)=>{const e=$('#rs');e.textContent=m;e.className='pill '+(ok===1?'ok':ok===0?'bad':'')};
 function rconnect(){
@@ -294,6 +309,13 @@ function dial(){
 function retry(full){clearTimeout(rt);rt=setTimeout(()=>{if(full||!peer||peer.destroyed)rconnect();else{if(peer.disconnected)try{peer.reconnect()}catch(e){}if(peer.open)dial()}},2500)}
 function rsend(o){if(conn&&conn.open)conn.send(o);else toast('Yayın ekranına bağlı değil')}
 
+/* sayfa tekrar öne gelince bağlantıyı onar */
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden)return;
+ if(role==='h'){if(!peer||peer.destroyed)startHost(ls.g('tlcCode')||rc());else if(peer.disconnected)try{peer.reconnect()}catch(e){}}
+ else if(role==='r'&&code&&!(conn&&conn.open))retry(true);
+});
+
 function drawL(el,items,cur,isV){
  el.innerHTML=items.map((x,i)=>'<div class="li'+(i===cur?' cur':'')+'"><span data-c="'+(isV?'vs':'ms')+'" data-i="'+i+'">'+E(isV?x:(x[1]?x[1]+' · ':'')+x[0])+'</span>'+(isV?'<button data-c="vm" data-i="'+i+'" data-d="-1">▲</button><button data-c="vm" data-i="'+i+'" data-d="1">▼</button>':'')+'</div>').join('')||'<p class="s">Liste boş. Yayın ekranından ekle.</p>';
 }
@@ -303,6 +325,7 @@ function draw(){
  $('#shb').className=S.sh?'on':'';$('#reb').textContent='Tekrar: '+['Kapalı','Liste','Şarkı'][S.rep||0];$('#reb').className=S.rep?'on':'';
  if(document.activeElement!==$('#vol'))$('#vol').value=Math.round((S.vol||0)*100);
  document.documentElement.style.setProperty('--a',TH[S.th||0]);
+ if(!menuInit&&S.mn){menuInit=true;[0,1,2].forEach(i=>$('#m'+(i+1)).value=(S.mn.items||[])[i]||'')}
  drawL($('#vl'),S.v||[],S.vi,true);drawL($('#ml'),S.m||[],S.mi,false);
 }
 function drawR(){$('#rl').innerHTML=reqs.map(r=>'<div class="li"><span><b>@'+E(r.u)+'</b> · '+E(r.s)+'</span><button class="p" data-c="acc" data-i="'+r.id+'">Kabul</button><button data-c="rej" data-i="'+r.id+'">Red</button></div>').join('')}
@@ -328,6 +351,9 @@ $('#mw').onclick=()=>{const u=$('#mu').value.trim();if(!u){toast('Kullanıcı ad
 $('#ra').onclick=()=>{const u=$('#ru').value.trim(),s=$('#rsg').value.trim();if(!u||!s){toast('Kullanıcı ve şarkı yaz');return}reqs.push({id:++rid,u,s});$('#rsg').value='';drawR()};
 $('#dsend').onclick=()=>{const f=$('#df').value.trim(),t=$('#dt').value.trim();if(!f||!t){toast('Kimden ve kime yaz');return}rsend({c:'card',k:'d',f,t,s:$('#ds').value.trim()})};
 $('#fsend').onclick=()=>{const f=$('#ff').value.trim(),t=$('#ft').value.trim();if(!f||!t){toast('Kimden ve kime yaz');return}rsend({c:'card',k:'f',f,t})};
+const mnItems=()=>[1,2,3].map(i=>$('#m'+i).value.trim());
+$('#mnSave').onclick=()=>{rsend({c:'menu',on:S.mn?S.mn.on:true,items:mnItems()});toast('Menü güncellendi')};
+$('#mnTog').onclick=()=>rsend({c:'menu',on:!(S.mn&&S.mn.on),items:mnItems()});
 
 /* ============ SPOTIFY (PKCE, kumanda tarafında) ============ */
 let dev=ls.g('spdev'),tr=[];
@@ -369,16 +395,16 @@ async function devs(){
 $('#spDev').onclick=devs;
 $('#spSearch').onclick=async()=>{
  const q=$('#spQuery').value.trim();if(!q)return;
- const r=await api('GET','/search?type=track&limit=8&market=from_token&q='+encodeURIComponent(q));
+ const base='/search?type=track&limit=8&q='+encodeURIComponent(q);
+ let r=await api('GET',base+'&market='+MARKET);
+ if(r.s===403){log('Market ile olmadı, marketsiz deneniyor');r=await api('GET',base)}
  tr=(r.j&&r.j.tracks&&r.j.tracks.items)||[];
  $('#spResults').innerHTML=tr.map((t,i)=>'<div class="li"><span>'+E(t.name)+'<br><small>'+E(t.artists.map(a=>a.name).join(', '))+(t.is_playable===false?' · çalınamaz':'')+'</small></span><button class="g" data-su="'+i+'">▶</button></div>').join('')||'<p class="s">Sonuç yok</p>';
 };
 async function sync(){
  await sleep(1200);const r=await api('GET','/me/player'),j=r.j;
  if(j&&j.item){
-  const a=j.item.artists.map(x=>x.name).join(', ');
-  $('#spNow').style.display='block';$('#spNow').textContent=(j.is_playing?'▶ ':'⏸ ')+j.item.name+' — '+a+' ['+(j.device?j.device.name:'?')+']';
-  rsend({c:'np',t:j.is_playing?j.item.name:'',a});
+  $('#spNow').style.display='block';$('#spNow').textContent=(j.is_playing?'▶ ':'⏸ ')+j.item.name+' — '+j.item.artists.map(x=>x.name).join(', ')+' ['+(j.device?j.device.name:'?')+']';
  }else log('Çalma durumu boş (aktif oturum yok)');
  return j;
 }
@@ -400,7 +426,7 @@ async function sPlay(t){
 }
 $('#spPlay').onclick=async()=>{
  const r=await api('GET','/me/player');
- if(r.j&&r.j.is_playing){await api('PUT','/me/player/pause'+dq());rsend({c:'np',t:''})}else await api('PUT','/me/player/play'+dq());
+ if(r.j&&r.j.is_playing)await api('PUT','/me/player/pause'+dq());else await api('PUT','/me/player/play'+dq());
  sync();
 };
 $('#spNext').onclick=async()=>{await api('POST','/me/player/next'+dq());sync()};
@@ -417,7 +443,7 @@ let vt;$('#spVol').oninput=e=>{clearTimeout(vt);vt=setTimeout(()=>api('PUT','/me
   catch(e){toast('Spotify hatası: '+e.message)}
  }else toast('Spotify girişi iptal edildi');
  const last=ls.g('tlcLast');
- if(last)openRem(last);else{show('rem')}
+ if(last)openRem(last);else show('rem');
  openTab('t6');
 })();
 </script></body></html>
