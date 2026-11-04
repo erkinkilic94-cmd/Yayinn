@@ -23,38 +23,49 @@ input[type=text],input[type=tel]{font:inherit;color:var(--t);background:#0d0618;
 .li{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:var(--c);margin:6px 0}
 .li.cur{outline:1px solid var(--a);box-shadow:0 0 14px #a855f766}
 .li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.li small{color:var(--m)}
 .li button{width:auto;min-height:40px;padding:6px 12px;flex:none}
-.tabs{display:flex;gap:6px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
-.tabs button{padding:10px 4px;font-size:14px}
+.tabs{display:flex;gap:4px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
+.tabs button{padding:10px 2px;font-size:12px}
 .tp{display:none}.tp.on{display:block}
 input[type=range]{width:100%;accent-color:var(--a);height:36px}
 .th{display:flex;gap:10px;margin:8px 0}.th button{height:48px;border-radius:99px}
-#toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:9;text-align:center}
+#toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:99;text-align:center}
 /* yayın sahnesi */
 #stage{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center}
 #stage.on{display:flex}
 #fr{position:relative;width:min(100vw,calc(100vh*9/16));height:min(100vh,calc(100vw*16/9));overflow:hidden;background:radial-gradient(circle at 50% 30%,#2a0b4a,#000)}
 #v{width:100%;height:100%;object-fit:cover}
 #fr:after{content:"";position:absolute;inset:0;background:linear-gradient(#0009,transparent 22%,transparent 62%,#000b);pointer-events:none}
-#np{position:absolute;z-index:2;top:4%;left:5%;right:5%;display:none;align-items:center;gap:12px;padding:12px 16px;border-radius:18px;background:#0a0314cc;border:1px solid var(--a);box-shadow:0 0 24px var(--a);animation:drop .6s}
-#np b{display:block;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#np small{color:var(--m)}#np div{min-width:0}
-.eq{display:flex;gap:3px;align-items:flex-end;height:24px}.eq i{width:5px;background:var(--a);border-radius:2px;animation:eq 1s infinite ease-in-out}
-.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
-@keyframes eq{0%,100%{height:5px}50%{height:24px}}
-@keyframes drop{from{transform:translateY(-30px);opacity:0}}
+@keyframes drop{from{transform:translateY(-60px);opacity:0}}
+@keyframes dropIn{from{transform:translateY(-80px) scale(.7);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
 @keyframes pop{from{transform:translateY(60px) scale(.85);opacity:0}}
 @keyframes glow{50%{box-shadow:0 0 44px var(--a)}}
-#rq{position:absolute;z-index:2;top:16%;left:5%;right:5%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:drop .5s}
-#msg{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:pop .55s,glow 2.5s infinite}
+#msg{position:absolute;z-index:3;left:5%;right:5%;top:6%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:drop .55s,glow 2.5s infinite}
 #msg .u{color:var(--a);font-weight:800;font-size:18px;margin-bottom:4px}
 #msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
 #msg.w .x{font-size:32px;text-align:center}
+#rq{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
+#ded{position:absolute;z-index:5;left:5%;right:5%;top:6%;display:none;padding:22px 20px 20px;border-radius:26px;background:linear-gradient(135deg,#7c3aed,#d946ef,#ff2d95,#7c3aed);background-size:300% 300%;border:2px solid rgba(255,255,255,.5);box-shadow:0 0 40px #d946efaa,0 0 90px #a855f766;animation:dropIn .7s,dedBg 4s infinite,dedGlow 1.6s infinite alternate;text-align:center;color:#fff;overflow:hidden}
+@keyframes dedBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes dedGlow{from{box-shadow:0 0 30px #d946efaa,0 0 70px #a855f766}to{box-shadow:0 0 60px #ff2d95cc,0 0 130px #d946ef88}}
+#ded .hd{position:relative;z-index:2;font-size:12px;letter-spacing:5px;font-weight:800;opacity:.95;margin-bottom:14px;text-shadow:0 2px 4px #0006}
+#ded .people{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:nowrap}
+#ded .name{font-size:22px;font-weight:800;text-shadow:0 2px 8px #0008;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ded .from{color:#fff}#ded .to{color:#fff}
+#ded .heart{font-size:28px;animation:heartBeat 1.1s infinite;filter:drop-shadow(0 0 8px #fff)}
+@keyframes heartBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.35)}30%{transform:scale(1)}45%{transform:scale(1.2)}}
+#ded .song{position:relative;z-index:2;margin-top:14px;padding:9px 16px;background:#0007;border-radius:99px;display:inline-block;font-size:14px;font-weight:600;border:1px solid #fff3;max-width:92%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ded .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+#ded .hearts span{position:absolute;bottom:-30px;font-size:22px;opacity:0;animation:floatHeart 3.2s infinite ease-out;filter:drop-shadow(0 0 6px #fff6)}
+@keyframes floatHeart{0%{opacity:0;transform:translateY(0) rotate(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(360deg) scale(1.1)}}
 #bk{position:fixed;top:0;left:0;width:64px;height:64px;z-index:20}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+/* spotify */
+#spNow{padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#1DB954,#191414);font-weight:700;font-size:13px;margin:10px 0;word-break:break-word;display:none}
+#spDevices .li.cur{outline-color:#1DB954;box-shadow:0 0 14px #1DB95466}
+#spPanel .pill.ok{background:#1DB95422}
 </style></head><body>
 
-<!-- ROL SEÇİMİ -->
 <div id="home" class="scr on">
  <h1>Yayın Stüdyosu</h1><p class="s">Bu telefonun görevini seç.</p>
  <div class="row"><button class="p" id="bH" style="min-height:90px;font-size:18px">📺 Yayın ekranı<br><small>Android</small></button></div>
@@ -62,11 +73,11 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
  <p class="s" style="margin-top:18px">Önce yayın ekranını aç, çıkan 6 haneli kodu kumandaya yaz.</p>
 </div>
 
-<!-- ANDROID: HAZIRLIK -->
 <div id="host" class="scr">
  <h1>Yayın ekranı</h1>
  <p class="s">Kumandada bu kodu gir:</p>
  <div class="big" id="code">------</div>
+ <button id="newCode" style="font-size:13px;padding:8px 12px;min-height:38px;width:auto;margin:0 auto 8px;display:block">🔄 Yeni Kod Oluştur</button>
  <div id="hs" class="pill">Bağlanıyor…</div>
  <div class="row"><button id="aV">🎞️ Video ekle</button><button id="aM">🎵 Müzik ekle</button></div>
  <input id="fV" type="file" accept="video/*" multiple hidden><input id="fM" type="file" accept="audio/*" multiple hidden>
@@ -75,15 +86,14 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
  <p class="s" style="margin-top:14px">Yayın ekranından çıkmak için sol üst köşeye iki kez dokun. Videolar her zaman sessiz oynar.</p>
 </div>
 
-<!-- ANDROID: SAHNE -->
 <div id="stage"><div id="fr">
  <video id="v" muted playsinline webkit-playsinline></video>
- <div id="np"><div class="eq"><i></i><i></i><i></i></div><div><b id="npt"></b><small id="npa"></small></div></div>
- <div id="rq"></div><div id="msg"></div>
+ <div id="msg"></div>
+ <div id="ded"></div>
+ <div id="rq"></div>
 </div><div id="bk"></div></div>
 <audio id="au"></audio>
 
-<!-- iPHONE: KUMANDA -->
 <div id="rem" class="scr">
  <div id="join">
   <h1>Kumanda</h1><p class="s">Yayın ekranındaki 6 haneli kodu yaz.</p>
@@ -92,7 +102,14 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
  </div>
  <div id="ctl" style="display:none">
   <div id="rs" class="pill">Bağlanıyor…</div>
-  <div class="tabs"><button data-tab="t1" class="on">Video</button><button data-tab="t2">Müzik</button><button data-tab="t3">Yayın</button><button data-tab="t4">İstek</button></div>
+  <div class="tabs">
+   <button data-tab="t1" class="on">Video</button>
+   <button data-tab="t2">Müzik</button>
+   <button data-tab="t3">Yayın</button>
+   <button data-tab="t4">İstek</button>
+   <button data-tab="t5">💌</button>
+   <button data-tab="t6">🎧</button>
+  </div>
   <div class="tp on" id="t1">
    <div class="row"><button data-c="vp">⏮</button><button data-c="vt" id="vpl" class="p">▶</button><button data-c="vn">⏭</button></div>
    <div class="row"><button data-c="va" id="vau"></button></div><div id="vl"></div>
@@ -110,9 +127,43 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div class="th"><button data-c="th" data-i="0" style="background:#a855f7"></button><button data-c="th" data-i="1" style="background:#22d3ee"></button><button data-c="th" data-i="2" style="background:#ff2d95"></button></div>
   </div>
   <div class="tp" id="t4">
-   <p class="s">İstekleri şimdilik elle eklersin. Otomatik algılama sonraki aşama.</p>
+   <p class="s">İstekleri şimdilik elle eklersin.</p>
    <input type="text" id="ru" placeholder="Kullanıcı adı" style="margin:8px 0"><input type="text" id="rsg" placeholder="Şarkı adı">
    <div class="row"><button class="p" id="ra">İstek ekle</button></div><div id="rl"></div>
+  </div>
+  <div class="tp" id="t5">
+   <p class="s">💌 Dedikasyon kartı — Android yayın ekranında animasyonlu olarak belirir.</p>
+   <input type="text" id="df" placeholder="Kimden (@kullanıcı)" style="margin:8px 0">
+   <input type="text" id="dt" placeholder="Kime (@kullanıcı)" style="margin:8px 0">
+   <input type="text" id="ds" placeholder="Şarkı adı (isteğe bağlı)">
+   <div class="row"><button class="p" id="dsend">💌 Dedikasyon Gönder</button></div>
+  </div>
+  <div class="tp" id="t6">
+   <div id="spLogin">
+    <p class="s">Spotify Premium hesabını bağla. Android'de Spotify uygulamasını açık tut.</p>
+    <div class="row"><button class="p" id="spConnect" style="background:linear-gradient(135deg,#1DB954,#158f41)">🎧 Spotify'a Bağlan</button></div>
+    <p class="s" style="font-size:12px;margin-top:14px">⚠️ Önce Spotify Dashboard'da uygulamanıza aşağıdaki Redirect URI'yi ekleyin (Edit Settings → Redirect URIs → Add → Save):</p>
+    <div class="li" style="font-size:11px"><span id="spRedirect" style="word-break:break-all;white-space:normal"></span><button id="spCopy" style="flex:none">Kopyala</button></div>
+   </div>
+   <div id="spPanel" style="display:none">
+    <div class="pill ok">✓ Spotify bağlı</div>
+    <button id="spLogout" style="width:auto;min-height:34px;padding:6px 12px;font-size:12px;margin-left:8px">Çıkış</button>
+
+    <p class="s" style="margin-top:14px">🎯 Çalma cihazı (Android'deki Spotify):</p>
+    <div class="row"><button id="spRefreshDevices">🔄 Cihazları Yenile</button></div>
+    <div id="spDevices"></div>
+
+    <p class="s" style="margin-top:14px">🔍 Şarkı ara:</p>
+    <input type="text" id="spQuery" placeholder="Şarkı adı...">
+    <div class="row"><button class="p" id="spSearchBtn" style="background:linear-gradient(135deg,#1DB954,#158f41)">🔍 Ara</button></div>
+    <div id="spResults"></div>
+
+    <p class="s" style="margin-top:14px">🎛️ Kontroller:</p>
+    <div class="row"><button id="spPrevBtn">⏮</button><button id="spPlayBtn" class="p" style="background:linear-gradient(135deg,#1DB954,#158f41)">▶</button><button id="spNextBtn">⏭</button></div>
+    <p class="s" style="margin-top:10px">Ses:</p>
+    <input type="range" id="spVol" min="0" max="100" value="70">
+    <div id="spNow"></div>
+   </div>
   </div>
  </div>
 </div>
@@ -120,11 +171,10 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
 <script>
-// Bağlantı kopmasın diye gerekirse buraya TURN sunucusu ekle: {urls:'turn:...',username:'..',credential:'..'}
 const ICE=[];
 const $=s=>document.querySelector(s);
 const E=t=>{const d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML};
-const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},d:k=>{try{localStorage.removeItem(k)}catch(e){}}};
 const PO=()=>({config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'},...ICE]}});
 const show=id=>{document.querySelectorAll('.scr,#stage').forEach(e=>e.classList.remove('on'));$('#'+id).classList.add('on')};
 let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',2800)};
@@ -132,34 +182,51 @@ const TH=['#a855f7','#22d3ee','#ff2d95'];
 let peer,conn;
 
 $('#bH').onclick=hostInit;
-$('#bR').onclick=()=>{show('rem');$('#ci').value=ls.g('tlcLast')||''};
+$('#bR').onclick=()=>{show('rem');$('#ci').value=''};
 
 /* ================= ANDROID: YAYIN EKRANI ================= */
 const V=$('#v'),A=$('#au');
-let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT;
+let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT,dedT;
 V.muted=true;V.defaultMuted=true;V.volume=0;
 const hs=m=>$('#hs').textContent=m;
 
+function startHost(code){
+ $('#code').textContent=code;
+ try{peer&&peer.destroy()}catch(e){}
+ conn=null;
+ peer=new Peer('tlcs'+code,PO());
+ peer.on('open',()=>hs('Hazır · kumanda bekleniyor'));
+ peer.on('connection',c=>{
+  if(conn&&conn.open)conn.close();conn=c;
+  c.on('open',()=>{hs('Kumanda bağlı ✓');push()});
+  c.on('data',cmd);
+  c.on('close',()=>{if(conn===c)hs('Kumanda koptu · yeniden bağlanması bekleniyor')});
+ });
+ peer.on('disconnected',()=>setTimeout(()=>{try{peer.reconnect()}catch(e){}},1500));
+ peer.on('error',e=>{
+  if(e.type==='unavailable-id'){
+   hs('Kod meşgul, yeni kod üretiliyor…');
+   try{peer.destroy()}catch(x){}
+   const nc=String(100000+Math.floor(Math.random()*900000));
+   ls.s('tlcCode',nc);
+   setTimeout(()=>startHost(nc),2500);
+  } else if(['network','server-error','socket-error','socket-closed'].includes(e.type))hs('Sunucuya ulaşılamıyor, tekrar denenecek…');
+ });
+}
 function hostInit(){
  show('host');
- const code=ls.g('tlcCode')||String(100000+Math.floor(Math.random()*900000));ls.s('tlcCode',code);
- $('#code').textContent=code;
- const go=()=>{
-  peer=new Peer('tlcs'+code,PO());
-  peer.on('open',()=>hs('Hazır · kumanda bekleniyor'));
-  peer.on('connection',c=>{
-   if(conn&&conn.open)conn.close();conn=c;
-   c.on('open',()=>{hs('Kumanda bağlı ✓');push()});
-   c.on('data',cmd);
-   c.on('close',()=>{if(conn===c)hs('Kumanda koptu · yeniden bağlanması bekleniyor')});
-  });
-  peer.on('disconnected',()=>setTimeout(()=>{try{peer.reconnect()}catch(e){}},1500));
-  peer.on('error',e=>{
-   if(e.type==='unavailable-id'){hs('Kod meşgul, yeniden deneniyor…');try{peer.destroy()}catch(x){}setTimeout(go,3500)}
-   else if(['network','server-error','socket-error','socket-closed'].includes(e.type))hs('Sunucuya ulaşılamıyor, tekrar denenecek…');
-  });
- };go();
+ const code=ls.g('tlcCode')||String(100000+Math.floor(Math.random()*900000));
+ ls.s('tlcCode',code);
+ startHost(code);
 }
+$('#newCode').onclick=()=>{
+ if(!confirm('Yeni oda kodu oluşturulsun mu?\nBağlı kumanda kopacak.'))return;
+ const nc=String(100000+Math.floor(Math.random()*900000));
+ ls.s('tlcCode',nc);
+ startHost(nc);
+ hs('Yeni kod: kumanda bekleniyor');
+};
+
 $('#aV').onclick=()=>$('#fV').click();$('#aM').onclick=()=>$('#fM').click();
 $('#fV').onchange=e=>{[...e.target.files].forEach(f=>vids.push({n:f.name.replace(/\.[^.]+$/,''),u:URL.createObjectURL(f)}));if(vi<0&&vids.length)lv(0,false);cnt();push();e.target.value=''};
 $('#fM').onchange=e=>{[...e.target.files].forEach(f=>{const n=f.name.replace(/\.[^.]+$/,'');const p=n.split(' - ');mus.push({t:p.length>1?p.slice(1).join(' - '):n,a:p.length>1?p[0]:'',u:URL.createObjectURL(f)})});if(mi<0&&mus.length)lt(0,false);cnt();push();e.target.value=''};
@@ -175,24 +242,58 @@ $('#bk').addEventListener('click',()=>{const n=Date.now();if(n-lastTap<450){try{
 
 function lv(i,p=true){if(!vids.length)return;vi=(i+vids.length)%vids.length;V.src=vids[vi].u;V.muted=true;V.loop=!auto;if(p)V.play().catch(()=>{});push()}
 V.onended=()=>{if(auto)lv(vi+1)};V.onplay=V.onpause=()=>push();
-function lt(i,p=true){if(!mus.length)return;mi=(i+mus.length)%mus.length;A.src=mus[mi].u;if(p)A.play().catch(()=>toast('Müzik başlatılamadı'));np();push()}
+function lt(i,p=true){if(!mus.length)return;mi=(i+mus.length)%mus.length;A.src=mus[mi].u;if(p)A.play().catch(()=>toast('Müzik başlatılamadı'));push()}
 const rnd=()=>{let r;do r=Math.floor(Math.random()*mus.length);while(r===mi);return r};
 const mn=()=>{if(mus.length)lt(sh&&mus.length>1?rnd():mi+1)};
-A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){np();push()}else mn()};
-A.onplay=A.onpause=()=>{np();push()};
-function np(){const t=mus[mi];$('#np').style.display=(t&&!A.paused)?'flex':'none';if(t){$('#npt').textContent=t.t;$('#npa').textContent=t.a||'♪'}}
+A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){push()}else mn()};
+A.onplay=A.onpause=()=>push();
 function setTheme(i){th=i;document.documentElement.style.setProperty('--a',TH[i]||TH[0])}
+
 function showMsg(d){
+ $('#ded').style.display='none';
  const m=$('#msg');m.className=d.k==='w'?'w':'';
  m.innerHTML=d.k==='w'?'<div class="u">👋 Hoş geldin</div><div class="x">@'+E(d.u)+'</div>':'<div class="u">@'+E(d.u)+'</div><div class="x">'+E(d.x)+'</div>';
  m.style.display='block';m.style.animation='none';void m.offsetWidth;m.style.animation='';
  clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
 }
+
+function showDed(d){
+ const el=$('#ded');
+ const from=E(d.f||'?');
+ const to=E(d.t||'?');
+ const song=d.s?`<div class="song">🎵 ${E(d.s)}</div>`:'';
+ el.innerHTML=`
+  <div class="hd">💌 ÖZEL İSTEK 💌</div>
+  <div class="people">
+   <span class="name from">@${from}</span>
+   <span class="heart">💜</span>
+   <span class="name to">@${to}</span>
+  </div>
+  ${song}
+  <div class="hearts">
+   <span style="left:8%;animation-delay:0s">💜</span>
+   <span style="left:24%;animation-delay:.6s">💖</span>
+   <span style="left:44%;animation-delay:1.2s">✨</span>
+   <span style="left:64%;animation-delay:.3s">💜</span>
+   <span style="left:84%;animation-delay:.9s">💖</span>
+  </div>`;
+ $('#msg').style.display='none';
+ el.style.display='block';
+ el.style.animation='none';void el.offsetWidth;el.style.animation='';
+ clearTimeout(dedT);dedT=setTimeout(()=>el.style.display='none',14000);
+ if(d.s){
+  const q=nz(d.s);
+  const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
+  if(i>=0)lt(i);
+ }
+}
 const nz=s=>(s||'').toLowerCase().replace(/[^a-z0-9ığüşöç ]/g,'').trim();
+
 function accept(d){
  const q=nz(d.s);const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
  if(i<0){send({t:'r',id:d.id,ok:false,m:'Müzik listesinde bulunamadı'});return}
- lt(i);const r=$('#rq');r.innerHTML='🎵 @'+E(d.u)+' istedi<br><small>'+E(mus[i].t)+'</small>';r.style.display='block';
+ lt(i);
+ const r=$('#rq');r.innerHTML='🎵 @'+E(d.u)+' istedi<br><small>'+E(mus[i].t)+'</small>';r.style.display='block';
  clearTimeout(rqT);rqT=setTimeout(()=>r.style.display='none',8000);
  send({t:'r',id:d.id,ok:true,m:'Çalıyor: '+mus[i].t});
 }
@@ -208,7 +309,8 @@ function cmd(d){
   case'vol':A.volume=Math.max(0,Math.min(1,d.v/100));push();break;
   case'sh':sh=!sh;push();break;case'rep':rep=(rep+1)%3;push();break;
   case'msg':showMsg(d);break;
-  case'clr':$('#msg').style.display='none';$('#rq').style.display='none';break;
+  case'ded':showDed(d);break;
+  case'clr':$('#msg').style.display='none';$('#ded').style.display='none';$('#rq').style.display='none';break;
   case'acc':accept(d);break;
   case'th':setTheme(d.i);push();break;
  }
@@ -218,7 +320,7 @@ function push(){send({t:'s',v:vids.map(x=>x.n),vi,vp:!V.paused,au:auto,m:mus.map
 
 /* ================= iPHONE: KUMANDA ================= */
 let S={v:[],m:[]},reqs=[],code,rid=0,rt;
-$('#cb').onclick=()=>{code=$('#ci').value.trim();if(code.length!==6){toast('6 haneli kodu yaz');return}ls.s('tlcLast',code);$('#join').style.display='none';$('#ctl').style.display='block';rconnect()};
+$('#cb').onclick=()=>{code=$('#ci').value.trim();if(code.length!==6){toast('6 haneli kodu yaz');return}$('#join').style.display='none';$('#ctl').style.display='block';rconnect()};
 const rs=(m,ok)=>{const e=$('#rs');e.textContent=m;e.className='pill '+(ok===1?'ok':ok===0?'bad':'')};
 function rconnect(){
  rs('Bağlanıyor…');
@@ -240,7 +342,7 @@ function retry(full){clearTimeout(rt);rt=setTimeout(()=>{if(full||!peer||peer.de
 function rsend(o){if(conn&&conn.open)conn.send(o);else toast('Bağlı değil')}
 
 function drawL(el,items,cur,isV){
- el.innerHTML=items.map((x,i)=>'<div class="li'+(i===cur?' cur':'')+'"><span data-c="'+(isV?'vs':'ms')+'" data-i="'+i+'">'+E(isV?x:(x[1]?x[1]+' · ':'')+x[0])+'</span>'+(isV?'<button data-c="vm" data-i="'+i+'" data-d="-1">▲</button><button data-c="vm" data-i="'+i+'" data-d="1">▼</button>':'')+'</div>').join('')||'<p class="s">Liste boş. Yayın ekranından ekle.</p>';
+ el.innerHTML=items.map((x,i)=>'<div class="li'+(i===cur?' cur':'')+'"><span data-c="'+(isV?'vs':'ms')+'" data-i="'+i+'">'+E(isV?x:(x[1]?x[1]+' · ':'')+x[0])+'</span>'+(isV?'<button data-c="vm" data-i="'+i+'" data-d="-1">▲</button><button data-c="vm" data-i="'+i+'" data-d="1">▼</button>':'')+'</div>').join('')||'<p class="s">Liste boş.</p>';
 }
 function draw(){
  $('#vpl').textContent=S.vp?'⏸':'▶';$('#mpl').textContent=S.mp?'⏸':'▶';
@@ -253,7 +355,12 @@ function draw(){
 function drawR(){$('#rl').innerHTML=reqs.map(r=>'<div class="li"><span><b>@'+E(r.u)+'</b> · '+E(r.s)+'</span><button class="p" data-c="acc" data-i="'+r.id+'">Kabul</button><button data-c="rej" data-i="'+r.id+'">Red</button></div>').join('')}
 document.addEventListener('click',e=>{
  const tb=e.target.closest('[data-tab]');
- if(tb){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b===tb));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id===tb.dataset.tab));return}
+ if(tb){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b===tb));
+  document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id===tb.dataset.tab));
+  if(tb.dataset.tab==='t6'&&spIsAuth()){spUpdateNow();spLoadDevices();}
+  return;
+ }
  const b=e.target.closest('[data-c]');if(!b||!$('#rem').classList.contains('on'))return;
  const c=b.dataset.c,i=b.dataset.i==null?undefined:+b.dataset.i,d=b.dataset.d==null?undefined:+b.dataset.d;
  if(c==='rej'){reqs=reqs.filter(r=>r.id!==i);drawR();return}
@@ -264,4 +371,172 @@ $('#vol').oninput=e=>rsend({c:'vol',v:+e.target.value});
 $('#ms').onclick=()=>{const u=$('#mu').value.trim(),x=$('#mx').value.trim();if(!u||!x){toast('Kullanıcı ve mesaj yaz');return}rsend({c:'msg',k:'m',u,x});$('#mx').value=''};
 $('#mw').onclick=()=>{const u=$('#mu').value.trim();if(!u){toast('Kullanıcı adı yaz');return}rsend({c:'msg',k:'w',u})};
 $('#ra').onclick=()=>{const u=$('#ru').value.trim(),s=$('#rsg').value.trim();if(!u||!s){toast('Kullanıcı ve şarkı yaz');return}reqs.push({id:++rid,u,s});$('#rsg').value='';drawR()};
+$('#dsend').onclick=()=>{
+ const f=$('#df').value.trim(),t=$('#dt').value.trim(),s=$('#ds').value.trim();
+ if(!f||!t){toast('Kimden ve kime yaz');return}
+ rsend({c:'ded',f,t,s});
+ $('#df').value='';$('#dt').value='';$('#ds').value='';
+ toast('Dedikasyon gönderildi 💜');
+};
+
+/* ================= SPOTIFY ================= */
+const SP_CLIENT_ID='a787f75da65f44df80aea1c8bfa4bbc3';
+const SP_REDIRECT_URI=location.origin+location.pathname;
+const SP_SCOPES='user-read-playback-state user-modify-playback-state user-read-currently-playing';
+const SP_AUTH='https://accounts.spotify.com/authorize';
+const SP_TOKEN='https://accounts.spotify.com/api/token';
+const SP_API='https://api.spotify.com/v1';
+let spSelectedDevice=null;
+
+function spRand(n){const c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';const v=crypto.getRandomValues(new Uint8Array(n));return Array.from(v).map(x=>c[x%c.length]).join('')}
+async function spPkce(){
+ const verifier=spRand(128);localStorage.setItem('sp_verifier',verifier);
+ const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(verifier));
+ const challenge=btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
+ return challenge;
+}
+async function spLogin(){
+ const challenge=await spPkce();
+ const state=spRand(16);localStorage.setItem('sp_state',state);
+ const p=new URLSearchParams({client_id:SP_CLIENT_ID,response_type:'code',redirect_uri:SP_REDIRECT_URI,scope:SP_SCOPES,code_challenge_method:'S256',code_challenge:challenge,state});
+ location.href=SP_AUTH+'?'+p.toString();
+}
+async function spHandleCallback(){
+ const p=new URLSearchParams(location.search);
+ const code=p.get('code'),state=p.get('state'),err=p.get('error');
+ if(err){history.replaceState({},'',location.pathname);toast('Spotify: '+err);return false}
+ if(!code)return false;
+ if(state!==localStorage.getItem('sp_state')){history.replaceState({},'',location.pathname);toast('Spotify: state uyuşmadı');return false}
+ const verifier=localStorage.getItem('sp_verifier');
+ const body=new URLSearchParams({grant_type:'authorization_code',code,redirect_uri:SP_REDIRECT_URI,client_id:SP_CLIENT_ID,code_verifier:verifier});
+ const r=await fetch(SP_TOKEN,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+ const d=await r.json();
+ history.replaceState({},'',location.pathname);
+ if(d.access_token){
+  localStorage.setItem('sp_at',d.access_token);
+  localStorage.setItem('sp_rt',d.refresh_token);
+  localStorage.setItem('sp_exp',Date.now()+d.expires_in*1000);
+  return true;
+ }
+ toast('Spotify bağlanamadı');
+ return false;
+}
+async function spRefresh(){
+ const rt=localStorage.getItem('sp_rt');
+ if(!rt)return false;
+ const body=new URLSearchParams({grant_type:'refresh_token',refresh_token:rt,client_id:SP_CLIENT_ID});
+ const r=await fetch(SP_TOKEN,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+ const d=await r.json();
+ if(d.access_token){
+  localStorage.setItem('sp_at',d.access_token);
+  if(d.refresh_token)localStorage.setItem('sp_rt',d.refresh_token);
+  localStorage.setItem('sp_exp',Date.now()+d.expires_in*1000);
+  return true;
+ }
+ return false;
+}
+async function spApi(path,opts={}){
+ let at=localStorage.getItem('sp_at');
+ const exp=parseInt(localStorage.getItem('sp_exp')||'0');
+ if(Date.now()>exp-60000){
+  if(!await spRefresh()){spLogout();return null}
+  at=localStorage.getItem('sp_at');
+ }
+ const r=await fetch(SP_API+path,{...opts,headers:{'Authorization':'Bearer '+at,...(opts.headers||{})}});
+ if(r.status===204)return{ok:true};
+ if(r.status===401){if(await spRefresh())return spApi(path,opts);spLogout();return null}
+ if(!r.ok){const err=await r.json().catch(()=>({}));console.error('Spotify',r.status,err);return{error:err}}
+ return r.json();
+}
+function spLogout(){['sp_at','sp_rt','sp_exp','sp_verifier','sp_state'].forEach(k=>localStorage.removeItem(k));spSelectedDevice=null}
+function spIsAuth(){return !!localStorage.getItem('sp_at')&&!!localStorage.getItem('sp_rt')}
+
+async function spLoadDevices(){
+ if(!spIsAuth())return;
+ const d=await spApi('/me/player/devices');
+ const el=$('#spDevices');
+ if(!d||!d.devices||!d.devices.length){
+  el.innerHTML='<p class="s">Cihaz bulunamadı. Android\'de Spotify uygulamasını aç ve bir şarkı çal, sonra burada yenile.</p>';
+  return;
+ }
+ el.innerHTML=d.devices.map(x=>'<div class="li '+(x.id===spSelectedDevice?'cur':'')+'" data-spdev="'+E(x.id)+'"><span>'+E(x.name)+(x.is_active?' 🟢':'')+'</span><small>'+E(x.type)+'</small></div>').join('');
+ el.querySelectorAll('[data-spdev]').forEach(y=>{
+  y.onclick=()=>{spSelectedDevice=y.dataset.spdev;spLoadDevices();};
+ });
+}
+
+async function spSearchTracks(){
+ const q=$('#spQuery').value.trim();
+ if(!q){toast('Şarkı adı yaz');return}
+ $('#spResults').innerHTML='<p class="s">Aranıyor…</p>';
+ const d=await spApi('/search?q='+encodeURIComponent(q)+'&type=track&limit=10');
+ const items=d&&d.tracks&&d.tracks.items||[];
+ if(!items.length){$('#spResults').innerHTML='<p class="s">Sonuç yok</p>';return}
+ $('#spResults').innerHTML=items.map(t=>'<div class="li"><span>'+E(t.name)+'<br><small>'+E(t.artists.map(a=>a.name).join(', '))+'</small></span><button class="p" data-spuri="'+E(t.uri)+'" style="background:linear-gradient(135deg,#1DB954,#158f41)">▶</button></div>').join('');
+ $('#spResults').querySelectorAll('[data-spuri]').forEach(b=>{
+  b.onclick=async()=>{
+   const uri=b.dataset.spuri;
+   toast('Çalınıyor...');
+   const url='/me/player/play'+(spSelectedDevice?'?device_id='+spSelectedDevice:'');
+   const r=await spApi(url,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({uris:[uri]})});
+   if(r&&r.error){
+    const msg=r.error.error&&r.error.error.message||'';
+    if(msg.includes('No active device')||msg.includes('Premium'))toast('Cihaz bulunamadı. Android\'de Spotify\'ı aç.');
+    else toast('Hata: '+msg);
+   } else {
+    setTimeout(spUpdateNow,700);
+   }
+  };
+ });
+}
+
+async function spUpdateNow(){
+ if(!spIsAuth())return;
+ const c=await spApi('/me/player/currently-playing');
+ const el=$('#spNow');
+ if(!c||!c.item){el.style.display='none';$('#spPlayBtn').textContent='▶';return}
+ el.style.display='block';
+ el.textContent=(c.is_playing?'▶ ':'⏸ ')+c.item.name+' — '+c.item.artists.map(a=>a.name).join(', ');
+ $('#spPlayBtn').textContent=c.is_playing?'⏸':'▶';
+ if(typeof c.device?.volume_percent==='number')$('#spVol').value=c.device.volume_percent;
+}
+
+$('#spConnect').onclick=spLogin;
+$('#spRedirect').textContent=SP_REDIRECT_URI;
+$('#spCopy').onclick=()=>{navigator.clipboard.writeText(SP_REDIRECT_URI).then(()=>toast('Kopyalandı')).catch(()=>toast('Kopyalanamadı, elle seç'))};
+$('#spLogout').onclick=()=>{spLogout();$('#spLogin').style.display='block';$('#spPanel').style.display='none'};
+$('#spRefreshDevices').onclick=spLoadDevices;
+$('#spSearchBtn').onclick=spSearchTracks;
+$('#spQuery').addEventListener('keydown',e=>{if(e.key==='Enter')spSearchTracks()});
+$('#spPlayBtn').onclick=async()=>{
+ const c=await spApi('/me/player/currently-playing');
+ if(c&&c.is_playing)await spApi('/me/player/pause',{method:'PUT'});
+ else await spApi('/me/player/play',{method:'PUT'});
+ setTimeout(spUpdateNow,500);
+};
+$('#spNextBtn').onclick=()=>spApi('/me/player/next',{method:'POST'});
+$('#spPrevBtn').onclick=()=>spApi('/me/player/previous',{method:'POST'});
+$('#spVol').oninput=e=>spApi('/me/player/volume?volume_percent='+e.target.value,{method:'PUT'});
+
+function spRefreshUI(){
+ if(spIsAuth()){$('#spLogin').style.display='none';$('#spPanel').style.display='block';spUpdateNow();}
+ else{$('#spLogin').style.display='block';$('#spPanel').style.display='none';}
+}
+spRefreshUI();
+
+(async()=>{
+ const p=new URLSearchParams(location.search);
+ if(p.has('code')||p.has('error')){
+  const ok=await spHandleCallback();
+  if(ok){
+   show('rem');$('#join').style.display='none';$('#ctl').style.display='block';
+   document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab==='t6'));
+   document.querySelectorAll('.tp').forEach(x=>x.classList.toggle('on',x.id==='t6'));
+   spRefreshUI();
+   toast('Spotify bağlandı ✓');
+  }
+ }
+})();
+
+setInterval(()=>{if(spIsAuth()&&$('#t6').classList.contains('on'))spUpdateNow();},4000);
 </script></body></html>
