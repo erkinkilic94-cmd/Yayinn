@@ -16,7 +16,6 @@ button:active{transform:scale(.97)}
 button.p{background:linear-gradient(135deg,#7c3aed,#d946ef);border:0;font-weight:700;box-shadow:0 0 20px #a855f766}
 button.on{border-color:var(--a);box-shadow:0 0 12px #a855f788 inset}
 button.red{background:linear-gradient(135deg,#dc2626,#b91c1c);border:0;font-weight:700}
-button.green{background:linear-gradient(135deg,#22c55e,#158f41);border:0;font-weight:700}
 input[type=text],input[type=tel]{font:inherit;color:var(--t);background:#0d0618;border:1px solid #3b1d5c;border-radius:12px;padding:12px;width:100%;min-height:48px}
 .row{display:flex;gap:8px;margin:8px 0}.row>*{flex:1}
 .big{font-size:44px;font-weight:800;letter-spacing:8px;text-align:center;color:var(--a);text-shadow:0 0 24px var(--a);margin:10px 0}
@@ -27,13 +26,14 @@ input[type=text],input[type=tel]{font:inherit;color:var(--t);background:#0d0618;
 .li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .li small{color:var(--m)}
 .li button{width:auto;min-height:40px;padding:6px 12px;flex:none}
-.tabs{display:flex;gap:3px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
-.tabs button{padding:10px 1px;font-size:11px}
+/* KAYDIRILABİLİR TAB BAR */
+.tabs{display:flex;gap:3px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;min-width:52px;padding:10px 5px;font-size:11px;white-space:nowrap}
 .tp{display:none}.tp.on{display:block}
 input[type=range]{width:100%;accent-color:var(--a);height:36px}
 .th{display:flex;gap:10px;margin:8px 0}.th button{height:48px;border-radius:99px}
 #toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:99;text-align:center;font-size:14px}
-/* yayın sahnesi */
 #stage{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center}
 #stage.on{display:flex}
 #fr{position:relative;width:min(100vw,calc(100vh*9/16));height:min(100vh,calc(100vw*16/9));overflow:hidden;background:radial-gradient(circle at 50% 30%,#2a0b4a,#000)}
@@ -47,7 +47,6 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 #msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
 #msg.w .x{font-size:32px;text-align:center}
 #rq{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
-/* DEDİKASYON KARTI - alt, zarif, süresiz */
 #ded{position:absolute;z-index:5;left:8%;right:8%;bottom:9%;display:none;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,rgba(124,58,237,.88),rgba(217,70,239,.88),rgba(255,45,149,.88));background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.4);box-shadow:0 6px 30px rgba(217,70,239,.55);animation:dedIn .6s cubic-bezier(.34,1.56,.64,1),dedBg 6s ease infinite;text-align:center;color:#fff;overflow:hidden}
 @keyframes dedIn{from{transform:translateY(30px) scale(.85);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
 @keyframes dedBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -60,7 +59,6 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 #ded .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
 #ded .hearts span{position:absolute;bottom:-20px;font-size:15px;opacity:0;animation:floatHeart 4s infinite ease-out;filter:drop-shadow(0 0 4px #fff5)}
 @keyframes floatHeart{0%{opacity:0;transform:translateY(0) rotate(0) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(-180px) rotate(280deg) scale(1)}}
-/* DOSTLUK KARTI - mavi/cyan, süresiz */
 #frd{position:absolute;z-index:5;left:8%;right:8%;bottom:9%;display:none;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,rgba(34,211,238,.85),rgba(59,130,246,.85),rgba(99,102,241,.85));background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.4);box-shadow:0 6px 30px rgba(59,130,246,.6);animation:dedIn .6s cubic-bezier(.34,1.56,.64,1),frdBg 6s ease infinite;text-align:center;color:#fff;overflow:hidden}
 @keyframes frdBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 #frd .hd{position:relative;z-index:2;font-size:10px;letter-spacing:4px;font-weight:800;opacity:.95;margin-bottom:8px;text-shadow:0 1px 3px #0006}
@@ -74,7 +72,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 #bk{position:fixed;top:0;left:0;width:64px;height:64px;z-index:20}
 #spNow{padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#1DB954,#191414);font-weight:700;font-size:13px;margin:10px 0;word-break:break-word;display:none}
 #spDevices .li.cur{outline-color:#1DB954;box-shadow:0 0 14px #1DB95466}
-#spLog{padding:10px;border-radius:8px;background:#0d0618;border:1px solid #3b1d5c;font-family:monospace;font-size:11px;max-height:140px;overflow-y:auto;margin-top:10px;white-space:pre-wrap;word-break:break-all;display:none}
+#spLog{padding:10px;border-radius:8px;background:#0d0618;border:1px solid #3b1d5c;font-family:monospace;font-size:10px;max-height:180px;overflow-y:auto;margin-top:10px;white-space:pre-wrap;word-break:break-all;color:#22d3ee}
 </style></head><body>
 
 <div id="home" class="scr on">
@@ -115,12 +113,12 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
  <div id="ctl" style="display:none">
   <div id="rs" class="pill">Bağlanıyor…</div>
   <div class="tabs">
-   <button data-tab="t1" class="on">Video</button>
-   <button data-tab="t2">Müzik</button>
-   <button data-tab="t3">Yayın</button>
-   <button data-tab="t4">İstek</button>
+   <button data-tab="t1" class="on">📹 Video</button>
+   <button data-tab="t2">🎵 Müzik</button>
+   <button data-tab="t3">💬 Yayın</button>
+   <button data-tab="t4">📋 İstek</button>
    <button data-tab="t5">💌</button>
-   <button data-tab="t7">🎴</button>
+   <button data-tab="t7">🤝</button>
    <button data-tab="t6">🎧</button>
   </div>
   <div class="tp on" id="t1">
@@ -145,7 +143,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div class="row"><button class="p" id="ra">İstek ekle</button></div><div id="rl"></div>
   </div>
   <div class="tp" id="t5">
-   <p class="s">💌 Dedikasyon kartı — süresiz kalır, "Kapat" deyince kalkar.</p>
+   <p class="s">💌 Dedikasyon — kapatana kadar ekranda kalır.</p>
    <input type="text" id="df" placeholder="Kimden (@kullanıcı)" style="margin:8px 0">
    <input type="text" id="dt" placeholder="Kime (@kullanıcı)" style="margin:8px 0">
    <input type="text" id="ds" placeholder="Şarkı adı (isteğe bağlı)">
@@ -153,10 +151,10 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
    <div class="row"><button class="red" data-c="closeded">❌ Dedikasyonu Kapat</button></div>
   </div>
   <div class="tp" id="t7">
-   <p class="s">🎴 Dostluk kartı — mavi tonlarda, süresiz kalır.</p>
+   <p class="s">🤝 Dostluk kartı — mavi tonlarda, kapatana kadar ekranda kalır.</p>
    <input type="text" id="ff" placeholder="Kimden (@kullanıcı)" style="margin:8px 0">
    <input type="text" id="ft" placeholder="Kime (@kullanıcı)" style="margin:8px 0">
-   <div class="row"><button class="p" id="fsend" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">🎴 Dostluk Kartı Gönder</button></div>
+   <div class="row"><button class="p" id="fsend" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">🤝 Dostluk Kartı Gönder</button></div>
    <div class="row"><button class="red" data-c="closefrd">❌ Dostluk Kartını Kapat</button></div>
    <div class="row"><button data-c="closeall">🔁 Tümünü Sıfırla</button></div>
   </div>
@@ -182,8 +180,8 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
     <p class="s" style="margin-top:10px">Ses:</p>
     <input type="range" id="spVol" min="0" max="100" value="70">
     <div id="spNow"></div>
-    <div class="row"><button id="spLogToggle" style="font-size:11px;min-height:34px">🔍 Log Göster</button></div>
-    <div id="spLog"></div>
+    <div class="row"><button id="spClearLog" style="font-size:11px;min-height:34px">🧹 Log Temizle</button></div>
+    <div id="spLog">Spotify log hazır. Bir şarkı çalmayı dene, sonuç burada görünecek.</div>
    </div>
   </div>
  </div>
@@ -201,6 +199,7 @@ const show=id=>{document.querySelectorAll('.scr,#stage').forEach(e=>e.classList.
 let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',4000)};
 const TH=['#a855f7','#22d3ee','#ff2d95'];
 let peer,conn;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
 $('#bH').onclick=hostInit;
 $('#bR').onclick=()=>{show('rem');$('#ci').value=''};
@@ -276,8 +275,6 @@ function showMsg(d){
  m.style.display='block';m.style.animation='none';void m.offsetWidth;m.style.animation='';
  clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
 }
-
-/* DEDİKASYON - süresiz, kumandadan kapatılır */
 function showDed(d){
  const el=$('#ded');
  const from=E(d.f||'?'),to=E(d.t||'?');
@@ -285,9 +282,7 @@ function showDed(d){
  el.innerHTML=`
   <div class="hd">💌 ÖZEL İSTEK 💌</div>
   <div class="people">
-   <span class="name">@${from}</span>
-   <span class="heart">💜</span>
-   <span class="name">@${to}</span>
+   <span class="name">@${from}</span><span class="heart">💜</span><span class="name">@${to}</span>
   </div>
   ${song}
   <div class="hearts">
@@ -296,25 +291,20 @@ function showDed(d){
    <span style="left:72%;animation-delay:.7s">✨</span>
   </div>`;
  $('#frd').style.display='none';
- el.style.display='block';
- el.style.animation='none';void el.offsetWidth;el.style.animation='';
+ el.style.display='block';el.style.animation='none';void el.offsetWidth;el.style.animation='';
  if(d.s){
   const q=nz(d.s);
   const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
   if(i>=0)lt(i);
  }
 }
-
-/* DOSTLUK KARTI - süresiz, kumandadan kapatılır */
 function showFrd(d){
  const el=$('#frd');
  const from=E(d.f||'?'),to=E(d.t||'?');
  el.innerHTML=`
   <div class="hd">🤝 DOSTLUK 🤝</div>
   <div class="people">
-   <span class="name">@${from}</span>
-   <span class="hand">🤝</span>
-   <span class="name">@${to}</span>
+   <span class="name">@${from}</span><span class="hand">🤝</span><span class="name">@${to}</span>
   </div>
   <div class="sub">💙 Dostluğunuz daim olsun</div>
   <div class="sparks">
@@ -323,8 +313,7 @@ function showFrd(d){
    <span style="left:80%;animation-delay:.8s">💙</span>
   </div>`;
  $('#ded').style.display='none';
- el.style.display='block';
- el.style.animation='none';void el.offsetWidth;el.style.animation='';
+ el.style.display='block';el.style.animation='none';void el.offsetWidth;el.style.animation='';
 }
 const nz=s=>(s||'').toLowerCase().replace(/[^a-z0-9ığüşöç ]/g,'').trim();
 
@@ -442,7 +431,7 @@ function spLog(msg){
  const el=$('#spLog');
  if(!el)return;
  const t=new Date().toLocaleTimeString('tr-TR');
- el.textContent += `[${t}] ${msg}\n`;
+ el.textContent += `\n[${t}] ${msg}`;
  el.scrollTop = el.scrollHeight;
  console.log('[SP]',msg);
 }
@@ -535,68 +524,89 @@ async function spLoadDevices(){
  });
 }
 
-/* AKILLI ÇALMA: aktifse transfer etme, direkt play et */
-async function spPlayUri(uri){
- toast('Hazırlanıyor…');
- spLog('--- Play isteği: '+uri+' ---');
+/* 3 AŞAMALI FALLBACK İLE ÇALMA */
+async function spPlayTrack(trackUri, albumUri){
+ spLog('====================');
+ spLog('▶ Play isteği');
+ spLog('Track URI: '+trackUri);
+ spLog('Album URI: '+albumUri);
 
  const d=await spApi('/me/player/devices');
  if(!d?.devices?.length){
-  toast('Spotify cihazı bulunamadı. Android\'de Spotify\'ı aç.');
+  spLog('✗ Hiç cihaz yok');
+  alert('Spotify cihazı bulunamadı!\n\nAndroid\'de Spotify uygulamasını aç, bir şarkı çalıp duraklat, sonra "Cihazları Yenile"ye bas.');
   return;
  }
+ const active=d.devices.find(x=>x.is_active);
+ const target=active||d.devices.find(x=>x.id===spSelectedDevice)||d.devices[0];
+ spLog('Hedef cihaz: '+target.name+' ('+target.id+')'+(active?' [AKTİF]':''));
+ const devId=encodeURIComponent(target.id);
 
- const active = d.devices.find(x=>x.is_active);
- spLog('Aktif cihaz: '+(active?active.name+' ('+active.id+')':'YOK'));
-
- let targetId;
- if(active){
-  // Cihaz zaten aktif, transfer YAPMA
-  targetId = active.id;
-  spLog('Zaten aktif, transfer atlanıyor.');
- } else {
-  // Aktif değilse seçili olanı transfer et
-  targetId = spSelectedDevice || d.devices[0].id;
-  spLog('Transfer ediliyor: '+targetId);
-  const tr = await spApi('/me/player',{
-   method:'PUT',
-   headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({device_ids:[targetId],play:false})
-  });
-  if(tr?.error){
-   toast('Cihaz aktifleştirilemedi');
-   return;
-  }
-  await new Promise(r=>setTimeout(r,1200));
- }
-
- // Şarkıyı çal (device_id GÖNDERMEDEN - aktif cihaz kullanılır)
- spLog('Play gönderiliyor (aktif cihaz üzerinden)');
- const r = await spApi('/me/player/play?device_id='+encodeURIComponent(targetId),{
+ /* DENEME 1: Doğrudan track URI */
+ spLog('--- Deneme 1: track URI ile ---');
+ let r = await spApi('/me/player/play?device_id='+devId,{
   method:'PUT',
   headers:{'Content-Type':'application/json'},
-  body:JSON.stringify({uris:[uri],position_ms:0})
+  body:JSON.stringify({uris:[trackUri],position_ms:0})
  });
-
- if(r?.error){
-  const msg = r.error?.error?.message || r.error?.message || JSON.stringify(r.error);
-  spLog('PLAY BAŞARISIZ: '+msg);
-  if(r.status===403)toast('Bu şarkı bölgenizde çalınamıyor olabilir');
-  else toast('Hata: '+msg);
+ spLog('Yanıt: '+JSON.stringify(r));
+ await sleep(2500);
+ let c = await spApi('/me/player/currently-playing');
+ spLog('Şu an: '+(c?.item?.uri||'yok')+' | Playing: '+c?.is_playing);
+ if(c?.is_playing && c.item?.uri===trackUri){
+  spLog('✓ BAŞARILI (Deneme 1)');
+  toast('▶ '+c.item.name);
+  setTimeout(spUpdateNow,500);
   return;
  }
 
- // Doğrulama: gerçekten çalıyor mu?
- await new Promise(r=>setTimeout(r,1500));
- const c = await spApi('/me/player/currently-playing');
- if(c?.is_playing && c.item){
-  spLog('✓ Çalıyor: '+c.item.name);
-  toast('▶ '+c.item.name);
- } else {
-  spLog('⚠ Play yanıtı başarılı ama çalmıyor gibi görünüyor');
-  toast('⚠ Spotify çalmıyor. Log sekmesine bak.');
+ /* DENEME 2: Album context + offset */
+ if(albumUri){
+  spLog('--- Deneme 2: album context + offset ---');
+  r = await spApi('/me/player/play?device_id='+devId,{
+   method:'PUT',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({context_uri:albumUri,offset:{uri:trackUri},position_ms:0})
+  });
+  spLog('Yanıt: '+JSON.stringify(r));
+  await sleep(2500);
+  c = await spApi('/me/player/currently-playing');
+  spLog('Şu an: '+(c?.item?.uri||'yok')+' | Playing: '+c?.is_playing);
+  if(c?.is_playing && c.item?.uri===trackUri){
+   spLog('✓ BAŞARILI (Deneme 2)');
+   toast('▶ '+c.item.name);
+   setTimeout(spUpdateNow,500);
+   return;
+  }
  }
- setTimeout(spUpdateNow,500);
+
+ /* DENEME 3: Transfer + bekle + play */
+ spLog('--- Deneme 3: transfer + bekle + play ---');
+ await spApi('/me/player',{
+  method:'PUT',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({device_ids:[target.id],play:false})
+ });
+ await sleep(1500);
+ r = await spApi('/me/player/play?device_id='+devId,{
+  method:'PUT',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({uris:[trackUri],position_ms:0})
+ });
+ spLog('Yanıt: '+JSON.stringify(r));
+ await sleep(2500);
+ c = await spApi('/me/player/currently-playing');
+ spLog('Şu an: '+(c?.item?.uri||'yok')+' | Playing: '+c?.is_playing);
+ if(c?.is_playing && c.item?.uri===trackUri){
+  spLog('✓ BAŞARILI (Deneme 3)');
+  toast('▶ '+c.item.name);
+  setTimeout(spUpdateNow,500);
+  return;
+ }
+
+ /* Başarısız */
+ spLog('✗ TÜM DENEMELER BAŞARISIZ');
+ alert('Şarkı başlatılamadı.\n\nOlası nedenler:\n• Android Spotify arka planda uyuyor (pil optimizasyonunu kapatın)\n• Şarkı bölgenizde yok\n• Premium hesap iOS\'ta farklı\n\nDetay için Log sekmesine bakın.');
 }
 
 async function spSearchTracks(){
@@ -604,16 +614,15 @@ async function spSearchTracks(){
  if(!q){toast('Şarkı adı yaz');return}
  $('#spResults').innerHTML='<p class="s">Aranıyor…</p>';
  const d=await spApi('/search?q='+encodeURIComponent(q)+'&type=track&limit=10');
- if(d&&d.error){
-  $('#spResults').innerHTML='<p class="s">Arama hatası</p>';
-  toast('Spotify arama hatası');
-  return;
- }
+ if(d&&d.error){$('#spResults').innerHTML='<p class="s">Arama hatası</p>';toast('Spotify arama hatası');return}
  const items=d&&d.tracks&&d.tracks.items||[];
  if(!items.length){$('#spResults').innerHTML='<p class="s">Sonuç yok</p>';return}
- $('#spResults').innerHTML=items.map(t=>'<div class="li"><span>'+E(t.name)+'<br><small>'+E(t.artists.map(a=>a.name).join(', '))+'</small></span><button class="p" data-spuri="'+E(t.uri)+'" style="background:linear-gradient(135deg,#1DB954,#158f41)">▶</button></div>').join('');
- $('#spResults').querySelectorAll('[data-spuri]').forEach(b=>{
-  b.onclick=()=>spPlayUri(b.dataset.spuri);
+ $('#spResults').innerHTML=items.map(t=>{
+  const auri=t.album?.uri||'';
+  return '<div class="li"><span>'+E(t.name)+'<br><small>'+E(t.artists.map(a=>a.name).join(', '))+'</small></span><button class="p" data-sptrack="'+E(t.uri)+'" data-spalbum="'+E(auri)+'" style="background:linear-gradient(135deg,#1DB954,#158f41)">▶</button></div>';
+ }).join('');
+ $('#spResults').querySelectorAll('[data-sptrack]').forEach(b=>{
+  b.onclick=()=>spPlayTrack(b.dataset.sptrack, b.dataset.spalbum);
  });
 }
 
@@ -644,7 +653,7 @@ $('#spPlayBtn').onclick=async()=>{
 $('#spNextBtn').onclick=()=>spApi('/me/player/next',{method:'POST'});
 $('#spPrevBtn').onclick=()=>spApi('/me/player/previous',{method:'POST'});
 $('#spVol').oninput=e=>spApi('/me/player/volume?volume_percent='+e.target.value,{method:'PUT'});
-$('#spLogToggle').onclick=()=>{const el=$('#spLog');el.style.display=el.style.display==='block'?'none':'block'};
+$('#spClearLog').onclick=()=>{$('#spLog').textContent='Log temizlendi.'};
 
 function spRefreshUI(){
  if(spIsAuth()){$('#spLogin').style.display='none';$('#spPanel').style.display='block';spUpdateNow();spLoadDevices();}
