@@ -46,7 +46,7 @@ input[type=range]{width:100%;accent-color:var(--a);height:36px}
 #msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
 #msg.w .x{font-size:32px;text-align:center}
 #rq{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:pop .5s}
-/* DEDİKASYON KARTI - ALTTA, ZARİF, YARI SAYDAM, 2:50 */
+/* DEDİKASYON KARTI - ALTTA, ZARİF, 2:50 */
 #ded{position:absolute;z-index:5;left:8%;right:8%;bottom:9%;display:none;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,rgba(124,58,237,.88),rgba(217,70,239,.88),rgba(255,45,149,.88));background-size:300% 300%;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.4);box-shadow:0 6px 30px rgba(217,70,239,.55);animation:dedIn .6s cubic-bezier(.34,1.56,.64,1),dedBg 6s ease infinite;text-align:center;color:#fff;overflow:hidden}
 @keyframes dedIn{from{transform:translateY(30px) scale(.85);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
 @keyframes dedBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -187,7 +187,7 @@ $('#bR').onclick=()=>{show('rem');$('#ci').value=''};
 
 /* ================= ANDROID: YAYIN EKRANI ================= */
 const V=$('#v'),A=$('#au');
-let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT,dedT;
+let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT,dedT,dedEnd=0;
 V.muted=true;V.defaultMuted=true;V.volume=0;
 const hs=m=>$('#hs').textContent=m;
 
@@ -250,7 +250,7 @@ A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){push()}el
 A.onplay=A.onpause=()=>push();
 function setTheme(i){th=i;document.documentElement.style.setProperty('--a',TH[i]||TH[0])}
 
-/* YAYIN MESAJI — üstte, dedikasyona dokunmaz */
+/* YAYIN MESAJI — üstte */
 function showMsg(d){
  const m=$('#msg');m.className=d.k==='w'?'w':'';
  m.innerHTML=d.k==='w'?'<div class="u">👋 Hoş geldin</div><div class="x">@'+E(d.u)+'</div>':'<div class="u">@'+E(d.u)+'</div><div class="x">'+E(d.x)+'</div>';
@@ -258,7 +258,7 @@ function showMsg(d){
  clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
 }
 
-/* DEDİKASYON — 2:50 (170 sn), altta, zarif, mesajı gizlemez */
+/* DEDİKASYON — 2:50 (170 sn), Date.now tabanlı güvenilir süre */
 function showDed(d){
  const el=$('#ded');
  const from=E(d.f||'?');
@@ -279,7 +279,16 @@ function showDed(d){
   </div>`;
  el.style.display='block';
  el.style.animation='none';void el.offsetWidth;el.style.animation='';
- clearTimeout(dedT);dedT=setTimeout(()=>el.style.display='none',170000);
+ // setTimeout yerine Date.now ile 170 saniye takibi
+ dedEnd=Date.now()+170000;
+ clearInterval(dedT);
+ dedT=setInterval(()=>{
+  if(Date.now()>=dedEnd){
+   el.style.display='none';
+   clearInterval(dedT);
+   dedT=null;
+  }
+ },1000);
  if(d.s){
   const q=nz(d.s);
   const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
@@ -309,7 +318,7 @@ function cmd(d){
   case'sh':sh=!sh;push();break;case'rep':rep=(rep+1)%3;push();break;
   case'msg':showMsg(d);break;
   case'ded':showDed(d);break;
-  case'clr':$('#msg').style.display='none';$('#ded').style.display='none';$('#rq').style.display='none';break;
+  case'clr':$('#msg').style.display='none';$('#ded').style.display='none';clearInterval(dedT);dedT=null;$('#rq').style.display='none';break;
   case'acc':accept(d);break;
   case'th':setTheme(d.i);push();break;
  }
@@ -463,7 +472,6 @@ async function spLoadDevices(){
   el.innerHTML='<p class="s">Cihaz bulunamadı. Android\'de Spotify uygulamasını aç ve bir şarkı çal, sonra burada yenile.</p>';
   return;
  }
- // Otomatik seç (aktif cihaz veya ilk cihaz)
  if(!spSelectedDevice){
   const act=d.devices.find(x=>x.is_active)||d.devices[0];
   spSelectedDevice=act.id;
@@ -474,33 +482,40 @@ async function spLoadDevices(){
  });
 }
 
-/* Cihaz seçili değilse otomatik bul */
+/* Cihazı HER SEFERİNDE yeniden bul (önbelleğe güvenme) */
 async function spEnsureDevice(){
- if(spSelectedDevice)return true;
  const d=await spApi('/me/player/devices');
  if(d&&d.devices&&d.devices.length){
   const act=d.devices.find(x=>x.is_active)||d.devices[0];
   spSelectedDevice=act.id;
-  spLoadDevices();
+  spLoadDevices(); // listeyi güncelle
   return true;
  }
  return false;
 }
 
-/* Asıl çalma fonksiyonu — cihazı bul, transfer et, çal */
+/* Geliştirilmiş çalma: transfer + kısa bekleme + play */
 async function spPlayUri(uri){
- toast('Hazırlanıyor…');
+ toast('Cihaz hazırlanıyor…');
  if(!await spEnsureDevice()){
   toast('Aktif Spotify cihazı yok. Android\'de Spotify\'ı açıp bir şarkı başlatıp duraklat, sonra tekrar dene.');
   return;
  }
- // Cihaza transfer et
- await spApi('/me/player',{
+ console.log('Seçilen cihaz:', spSelectedDevice);
+ // 1) Cihaza transfer
+ const tr = await spApi('/me/player',{
   method:'PUT',
   headers:{'Content-Type':'application/json'},
   body:JSON.stringify({device_ids:[spSelectedDevice],play:false})
  });
- // Şarkıyı çal
+ if(tr&&tr.error){
+  const msg=tr.error?.error?.message||JSON.stringify(tr.error);
+  toast('Transfer hatası: '+msg);
+  return;
+ }
+ // 2) Kısa bekleme (API'nin cihazı aktif görmesi için)
+ await new Promise(r=>setTimeout(r,800));
+ // 3) Şarkıyı çal
  const r=await spApi('/me/player/play?device_id='+encodeURIComponent(spSelectedDevice),{
   method:'PUT',
   headers:{'Content-Type':'application/json'},
@@ -508,7 +523,7 @@ async function spPlayUri(uri){
  });
  if(r&&r.error){
   const msg=r.error?.error?.message||r.error?.message||JSON.stringify(r.error);
-  toast('Spotify: '+msg);
+  toast('Çalma hatası: '+msg);
   console.error('Spotify play error:',r);
   return;
  }
