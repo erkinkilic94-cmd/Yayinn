@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#07030f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<title>Yayın Stüdyosu</title>
+<style>
+:root{--a:#a855f7;--bg:#07030f;--c:#150a24;--t:#f3eaff;--m:#9b8bb4}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--t);font:15px/1.4 system-ui,-apple-system,sans-serif;overflow:hidden}
+.scr{position:fixed;inset:0;overflow:auto;padding:max(18px,env(safe-area-inset-top)) 16px 30px;display:none}
+.scr.on{display:block}
+h1{font-size:26px;letter-spacing:-.5px;text-shadow:0 0 22px var(--a);margin:8px 0 4px}
+p.s{color:var(--m);margin-bottom:14px}
+button{font:inherit;color:var(--t);background:var(--c);border:1px solid #3b1d5c;border-radius:12px;padding:12px 14px;min-height:48px;width:100%}
+button:active{transform:scale(.97)}
+button.p{background:linear-gradient(135deg,#7c3aed,#d946ef);border:0;font-weight:700;box-shadow:0 0 20px #a855f766}
+button.on{border-color:var(--a);box-shadow:0 0 12px #a855f788 inset}
+input[type=text],input[type=tel]{font:inherit;color:var(--t);background:#0d0618;border:1px solid #3b1d5c;border-radius:12px;padding:12px;width:100%;min-height:48px}
+.row{display:flex;gap:8px;margin:8px 0}.row>*{flex:1}
+.big{font-size:44px;font-weight:800;letter-spacing:8px;text-align:center;color:var(--a);text-shadow:0 0 24px var(--a);margin:10px 0}
+.pill{display:inline-block;padding:6px 12px;border-radius:99px;background:var(--c);border:1px solid #3b1d5c;font-size:13px;margin:6px 0}
+.pill.ok{border-color:#22d3ee;color:#22d3ee}.pill.bad{border-color:#ff2d95;color:#ff2d95}
+.li{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:var(--c);margin:6px 0}
+.li.cur{outline:1px solid var(--a);box-shadow:0 0 14px #a855f766}
+.li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.li button{width:auto;min-height:40px;padding:6px 12px;flex:none}
+.tabs{display:flex;gap:6px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
+.tabs button{padding:10px 4px;font-size:14px}
+.tp{display:none}.tp.on{display:block}
+input[type=range]{width:100%;accent-color:var(--a);height:36px}
+.th{display:flex;gap:10px;margin:8px 0}.th button{height:48px;border-radius:99px}
+#toast{position:fixed;left:16px;right:16px;bottom:24px;background:#22103a;border:1px solid var(--a);border-radius:12px;padding:12px;display:none;z-index:9;text-align:center}
+/* yayın sahnesi */
+#stage{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center}
+#stage.on{display:flex}
+#fr{position:relative;width:min(100vw,calc(100vh*9/16));height:min(100vh,calc(100vw*16/9));overflow:hidden;background:radial-gradient(circle at 50% 30%,#2a0b4a,#000)}
+#v{width:100%;height:100%;object-fit:cover}
+#fr:after{content:"";position:absolute;inset:0;background:linear-gradient(#0009,transparent 22%,transparent 62%,#000b);pointer-events:none}
+#np{position:absolute;z-index:2;top:4%;left:5%;right:5%;display:none;align-items:center;gap:12px;padding:12px 16px;border-radius:18px;background:#0a0314cc;border:1px solid var(--a);box-shadow:0 0 24px var(--a);animation:drop .6s}
+#np b{display:block;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#np small{color:var(--m)}#np div{min-width:0}
+.eq{display:flex;gap:3px;align-items:flex-end;height:24px}.eq i{width:5px;background:var(--a);border-radius:2px;animation:eq 1s infinite ease-in-out}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:5px}50%{height:24px}}
+@keyframes drop{from{transform:translateY(-30px);opacity:0}}
+@keyframes pop{from{transform:translateY(60px) scale(.85);opacity:0}}
+@keyframes glow{50%{box-shadow:0 0 44px var(--a)}}
+#rq{position:absolute;z-index:2;top:16%;left:5%;right:5%;display:none;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#7c3aedee,#d946efee);font-weight:700;animation:drop .5s}
+#msg{position:absolute;z-index:2;left:5%;right:5%;bottom:8%;display:none;padding:18px 20px;border-radius:22px;background:#0a0314dd;border:2px solid var(--a);box-shadow:0 0 28px var(--a);animation:pop .55s,glow 2.5s infinite}
+#msg .u{color:var(--a);font-weight:800;font-size:18px;margin-bottom:4px}
+#msg .x{font-size:26px;font-weight:700;line-height:1.25;word-break:break-word}
+#msg.w .x{font-size:32px;text-align:center}
+#bk{position:fixed;top:0;left:0;width:64px;height:64px;z-index:20}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+
+<!-- ROL SEÇİMİ -->
+<div id="home" class="scr on">
+ <h1>Yayın Stüdyosu</h1><p class="s">Bu telefonun görevini seç.</p>
+ <div class="row"><button class="p" id="bH" style="min-height:90px;font-size:18px">📺 Yayın ekranı<br><small>Android</small></button></div>
+ <div class="row"><button class="p" id="bR" style="min-height:90px;font-size:18px">🎛️ Kumanda<br><small>iPhone</small></button></div>
+ <p class="s" style="margin-top:18px">Önce yayın ekranını aç, çıkan 6 haneli kodu kumandaya yaz.</p>
+</div>
+
+<!-- ANDROID: HAZIRLIK -->
+<div id="host" class="scr">
+ <h1>Yayın ekranı</h1>
+ <p class="s">Kumandada bu kodu gir:</p>
+ <div class="big" id="code">------</div>
+ <div id="hs" class="pill">Bağlanıyor…</div>
+ <div class="row"><button id="aV">🎞️ Video ekle</button><button id="aM">🎵 Müzik ekle</button></div>
+ <input id="fV" type="file" accept="video/*" multiple hidden><input id="fM" type="file" accept="audio/*" multiple hidden>
+ <p class="s" id="cnt">0 video · 0 müzik</p>
+ <button class="p" id="go">Yayın ekranını başlat</button>
+ <p class="s" style="margin-top:14px">Yayın ekranından çıkmak için sol üst köşeye iki kez dokun. Videolar her zaman sessiz oynar.</p>
+</div>
+
+<!-- ANDROID: SAHNE -->
+<div id="stage"><div id="fr">
+ <video id="v" muted playsinline webkit-playsinline></video>
+ <div id="np"><div class="eq"><i></i><i></i><i></i></div><div><b id="npt"></b><small id="npa"></small></div></div>
+ <div id="rq"></div><div id="msg"></div>
+</div><div id="bk"></div></div>
+<audio id="au"></audio>
+
+<!-- iPHONE: KUMANDA -->
+<div id="rem" class="scr">
+ <div id="join">
+  <h1>Kumanda</h1><p class="s">Yayın ekranındaki 6 haneli kodu yaz.</p>
+  <input id="ci" type="tel" inputmode="numeric" maxlength="6" placeholder="Oda kodu">
+  <div class="row"><button class="p" id="cb">Bağlan</button></div>
+ </div>
+ <div id="ctl" style="display:none">
+  <div id="rs" class="pill">Bağlanıyor…</div>
+  <div class="tabs"><button data-tab="t1" class="on">Video</button><button data-tab="t2">Müzik</button><button data-tab="t3">Yayın</button><button data-tab="t4">İstek</button></div>
+  <div class="tp on" id="t1">
+   <div class="row"><button data-c="vp">⏮</button><button data-c="vt" id="vpl" class="p">▶</button><button data-c="vn">⏭</button></div>
+   <div class="row"><button data-c="va" id="vau"></button></div><div id="vl"></div>
+  </div>
+  <div class="tp" id="t2">
+   <div class="row"><button data-c="mp">⏮</button><button data-c="mt" id="mpl" class="p">▶</button><button data-c="mn">⏭</button></div>
+   <input type="range" id="vol" min="0" max="100">
+   <div class="row"><button data-c="sh" id="shb">Karışık</button><button data-c="rep" id="reb">Tekrar</button></div><div id="ml"></div>
+  </div>
+  <div class="tp" id="t3">
+   <input type="text" id="mu" placeholder="Kullanıcı adı" style="margin:8px 0"><input type="text" id="mx" placeholder="Mesaj">
+   <div class="row"><button class="p" id="ms">Yayına gönder</button><button id="mw">👋 Karşılama</button></div>
+   <div class="row"><button data-c="clr">Yazıyı kaldır</button></div>
+   <p class="s">Yayın rengi</p>
+   <div class="th"><button data-c="th" data-i="0" style="background:#a855f7"></button><button data-c="th" data-i="1" style="background:#22d3ee"></button><button data-c="th" data-i="2" style="background:#ff2d95"></button></div>
+  </div>
+  <div class="tp" id="t4">
+   <p class="s">İstekleri şimdilik elle eklersin. Otomatik algılama sonraki aşama.</p>
+   <input type="text" id="ru" placeholder="Kullanıcı adı" style="margin:8px 0"><input type="text" id="rsg" placeholder="Şarkı adı">
+   <div class="row"><button class="p" id="ra">İstek ekle</button></div><div id="rl"></div>
+  </div>
+ </div>
+</div>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+<script>
+// Bağlantı kopmasın diye gerekirse buraya TURN sunucusu ekle: {urls:'turn:...',username:'..',credential:'..'}
+const ICE=[];
+const $=s=>document.querySelector(s);
+const E=t=>{const d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML};
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const PO=()=>({config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'},...ICE]}});
+const show=id=>{document.querySelectorAll('.scr,#stage').forEach(e=>e.classList.remove('on'));$('#'+id).classList.add('on')};
+let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',2800)};
+const TH=['#a855f7','#22d3ee','#ff2d95'];
+let peer,conn;
+
+$('#bH').onclick=hostInit;
+$('#bR').onclick=()=>{show('rem');$('#ci').value=ls.g('tlcLast')||''};
+
+/* ================= ANDROID: YAYIN EKRANI ================= */
+const V=$('#v'),A=$('#au');
+let vids=[],mus=[],vi=-1,mi=-1,auto=true,sh=false,rep=0,th=0,msgT,rqT;
+V.muted=true;V.defaultMuted=true;V.volume=0;
+const hs=m=>$('#hs').textContent=m;
+
+function hostInit(){
+ show('host');
+ const code=ls.g('tlcCode')||String(100000+Math.floor(Math.random()*900000));ls.s('tlcCode',code);
+ $('#code').textContent=code;
+ const go=()=>{
+  peer=new Peer('tlcs'+code,PO());
+  peer.on('open',()=>hs('Hazır · kumanda bekleniyor'));
+  peer.on('connection',c=>{
+   if(conn&&conn.open)conn.close();conn=c;
+   c.on('open',()=>{hs('Kumanda bağlı ✓');push()});
+   c.on('data',cmd);
+   c.on('close',()=>{if(conn===c)hs('Kumanda koptu · yeniden bağlanması bekleniyor')});
+  });
+  peer.on('disconnected',()=>setTimeout(()=>{try{peer.reconnect()}catch(e){}},1500));
+  peer.on('error',e=>{
+   if(e.type==='unavailable-id'){hs('Kod meşgul, yeniden deneniyor…');try{peer.destroy()}catch(x){}setTimeout(go,3500)}
+   else if(['network','server-error','socket-error','socket-closed'].includes(e.type))hs('Sunucuya ulaşılamıyor, tekrar denenecek…');
+  });
+ };go();
+}
+$('#aV').onclick=()=>$('#fV').click();$('#aM').onclick=()=>$('#fM').click();
+$('#fV').onchange=e=>{[...e.target.files].forEach(f=>vids.push({n:f.name.replace(/\.[^.]+$/,''),u:URL.createObjectURL(f)}));if(vi<0&&vids.length)lv(0,false);cnt();push();e.target.value=''};
+$('#fM').onchange=e=>{[...e.target.files].forEach(f=>{const n=f.name.replace(/\.[^.]+$/,'');const p=n.split(' - ');mus.push({t:p.length>1?p.slice(1).join(' - '):n,a:p.length>1?p[0]:'',u:URL.createObjectURL(f)})});if(mi<0&&mus.length)lt(0,false);cnt();push();e.target.value=''};
+const cnt=()=>$('#cnt').textContent=vids.length+' video · '+mus.length+' müzik';
+$('#go').onclick=()=>{
+ show('stage');
+ try{document.documentElement.requestFullscreen()}catch(e){}
+ try{navigator.wakeLock.request('screen')}catch(e){}
+ if(vids.length)V.play().catch(()=>{});
+};
+let lastTap=0;
+$('#bk').addEventListener('click',()=>{const n=Date.now();if(n-lastTap<450){try{document.exitFullscreen()}catch(e){}show('host')}lastTap=n});
+
+function lv(i,p=true){if(!vids.length)return;vi=(i+vids.length)%vids.length;V.src=vids[vi].u;V.muted=true;V.loop=!auto;if(p)V.play().catch(()=>{});push()}
+V.onended=()=>{if(auto)lv(vi+1)};V.onplay=V.onpause=()=>push();
+function lt(i,p=true){if(!mus.length)return;mi=(i+mus.length)%mus.length;A.src=mus[mi].u;if(p)A.play().catch(()=>toast('Müzik başlatılamadı'));np();push()}
+const rnd=()=>{let r;do r=Math.floor(Math.random()*mus.length);while(r===mi);return r};
+const mn=()=>{if(mus.length)lt(sh&&mus.length>1?rnd():mi+1)};
+A.onended=()=>{if(rep==2)lt(mi);else if(!sh&&rep==0&&mi==mus.length-1){np();push()}else mn()};
+A.onplay=A.onpause=()=>{np();push()};
+function np(){const t=mus[mi];$('#np').style.display=(t&&!A.paused)?'flex':'none';if(t){$('#npt').textContent=t.t;$('#npa').textContent=t.a||'♪'}}
+function setTheme(i){th=i;document.documentElement.style.setProperty('--a',TH[i]||TH[0])}
+function showMsg(d){
+ const m=$('#msg');m.className=d.k==='w'?'w':'';
+ m.innerHTML=d.k==='w'?'<div class="u">👋 Hoş geldin</div><div class="x">@'+E(d.u)+'</div>':'<div class="u">@'+E(d.u)+'</div><div class="x">'+E(d.x)+'</div>';
+ m.style.display='block';m.style.animation='none';void m.offsetWidth;m.style.animation='';
+ clearTimeout(msgT);msgT=setTimeout(()=>m.style.display='none',15000);
+}
+const nz=s=>(s||'').toLowerCase().replace(/[^a-z0-9ığüşöç ]/g,'').trim();
+function accept(d){
+ const q=nz(d.s);const i=q?mus.findIndex(t=>nz(t.t).includes(q)||q.includes(nz(t.t))||nz(t.a+' '+t.t).includes(q)):-1;
+ if(i<0){send({t:'r',id:d.id,ok:false,m:'Müzik listesinde bulunamadı'});return}
+ lt(i);const r=$('#rq');r.innerHTML='🎵 @'+E(d.u)+' istedi<br><small>'+E(mus[i].t)+'</small>';r.style.display='block';
+ clearTimeout(rqT);rqT=setTimeout(()=>r.style.display='none',8000);
+ send({t:'r',id:d.id,ok:true,m:'Çalıyor: '+mus[i].t});
+}
+function cmd(d){
+ switch(d.c){
+  case'vn':lv(vi+1);break;case'vp':lv(vi-1);break;
+  case'vt':if(V.paused)V.play().catch(()=>{});else V.pause();break;
+  case'vs':lv(d.i);break;
+  case'vm':{const j=d.i+d.d;if(j>=0&&j<vids.length){[vids[d.i],vids[j]]=[vids[j],vids[d.i]];if(vi===d.i)vi=j;else if(vi===j)vi=d.i;push()}break}
+  case'va':auto=!auto;V.loop=!auto;push();break;
+  case'mt':if(A.paused)A.play().catch(()=>{});else A.pause();break;
+  case'mn':mn();break;case'mp':lt(mi-1);break;case'ms':lt(d.i);break;
+  case'vol':A.volume=Math.max(0,Math.min(1,d.v/100));push();break;
+  case'sh':sh=!sh;push();break;case'rep':rep=(rep+1)%3;push();break;
+  case'msg':showMsg(d);break;
+  case'clr':$('#msg').style.display='none';$('#rq').style.display='none';break;
+  case'acc':accept(d);break;
+  case'th':setTheme(d.i);push();break;
+ }
+}
+function send(o){if(conn&&conn.open)conn.send(o)}
+function push(){send({t:'s',v:vids.map(x=>x.n),vi,vp:!V.paused,au:auto,m:mus.map(x=>[x.t,x.a]),mi,mp:!A.paused,vol:A.volume,sh,rep,th})}
+
+/* ================= iPHONE: KUMANDA ================= */
+let S={v:[],m:[]},reqs=[],code,rid=0,rt;
+$('#cb').onclick=()=>{code=$('#ci').value.trim();if(code.length!==6){toast('6 haneli kodu yaz');return}ls.s('tlcLast',code);$('#join').style.display='none';$('#ctl').style.display='block';rconnect()};
+const rs=(m,ok)=>{const e=$('#rs');e.textContent=m;e.className='pill '+(ok===1?'ok':ok===0?'bad':'')};
+function rconnect(){
+ rs('Bağlanıyor…');
+ try{peer&&peer.destroy()}catch(e){}
+ peer=new Peer(PO());
+ peer.on('open',dial);
+ peer.on('disconnected',()=>{try{peer.reconnect()}catch(e){}});
+ peer.on('error',e=>{rs('Yayın ekranı bulunamadı · tekrar deneniyor',0);retry(e.type==='peer-unavailable'?false:true)});
+}
+function dial(){
+ if(conn&&conn.open)return;
+ conn=peer.connect('tlcs'+code,{reliable:true});
+ const c=conn;
+ c.on('open',()=>rs('Yayın ekranına bağlı ✓',1));
+ c.on('data',d=>{if(d.t==='s'){S=d;draw()}else if(d.t==='r'){toast(d.m);if(d.ok)reqs=reqs.filter(r=>r.id!==d.id);drawR()}});
+ c.on('close',()=>{rs('Bağlantı koptu · yeniden bağlanıyor',0);retry(false)});
+}
+function retry(full){clearTimeout(rt);rt=setTimeout(()=>{if(full||!peer||peer.destroyed)rconnect();else{if(peer.disconnected)try{peer.reconnect()}catch(e){}if(peer.open)dial()}},2500)}
+function rsend(o){if(conn&&conn.open)conn.send(o);else toast('Bağlı değil')}
+
+function drawL(el,items,cur,isV){
+ el.innerHTML=items.map((x,i)=>'<div class="li'+(i===cur?' cur':'')+'"><span data-c="'+(isV?'vs':'ms')+'" data-i="'+i+'">'+E(isV?x:(x[1]?x[1]+' · ':'')+x[0])+'</span>'+(isV?'<button data-c="vm" data-i="'+i+'" data-d="-1">▲</button><button data-c="vm" data-i="'+i+'" data-d="1">▼</button>':'')+'</div>').join('')||'<p class="s">Liste boş. Yayın ekranından ekle.</p>';
+}
+function draw(){
+ $('#vpl').textContent=S.vp?'⏸':'▶';$('#mpl').textContent=S.mp?'⏸':'▶';
+ $('#vau').textContent='Otomatik geçiş: '+(S.au?'Açık':'Kapalı');$('#vau').className=S.au?'on':'';
+ $('#shb').className=S.sh?'on':'';$('#reb').textContent='Tekrar: '+['Kapalı','Liste','Şarkı'][S.rep||0];$('#reb').className=S.rep?'on':'';
+ if(document.activeElement!==$('#vol'))$('#vol').value=Math.round((S.vol||0)*100);
+ document.documentElement.style.setProperty('--a',TH[S.th||0]);
+ drawL($('#vl'),S.v||[],S.vi,true);drawL($('#ml'),S.m||[],S.mi,false);
+}
+function drawR(){$('#rl').innerHTML=reqs.map(r=>'<div class="li"><span><b>@'+E(r.u)+'</b> · '+E(r.s)+'</span><button class="p" data-c="acc" data-i="'+r.id+'">Kabul</button><button data-c="rej" data-i="'+r.id+'">Red</button></div>').join('')}
+document.addEventListener('click',e=>{
+ const tb=e.target.closest('[data-tab]');
+ if(tb){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b===tb));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id===tb.dataset.tab));return}
+ const b=e.target.closest('[data-c]');if(!b||!$('#rem').classList.contains('on'))return;
+ const c=b.dataset.c,i=b.dataset.i==null?undefined:+b.dataset.i,d=b.dataset.d==null?undefined:+b.dataset.d;
+ if(c==='rej'){reqs=reqs.filter(r=>r.id!==i);drawR();return}
+ if(c==='acc'){const r=reqs.find(r=>r.id===i);if(r)rsend({c:'acc',id:r.id,u:r.u,s:r.s});return}
+ rsend({c,i,d});
+});
+$('#vol').oninput=e=>rsend({c:'vol',v:+e.target.value});
+$('#ms').onclick=()=>{const u=$('#mu').value.trim(),x=$('#mx').value.trim();if(!u||!x){toast('Kullanıcı ve mesaj yaz');return}rsend({c:'msg',k:'m',u,x});$('#mx').value=''};
+$('#mw').onclick=()=>{const u=$('#mu').value.trim();if(!u){toast('Kullanıcı adı yaz');return}rsend({c:'msg',k:'w',u})};
+$('#ra').onclick=()=>{const u=$('#ru').value.trim(),s=$('#rsg').value.trim();if(!u||!s){toast('Kullanıcı ve şarkı yaz');return}reqs.push({id:++rid,u,s});$('#rsg').value='';drawR()};
+</script></body></html>
